@@ -1,0 +1,9 @@
+{
+  "name": "audio_muq",
+  "n_works": 105,
+  "embedding_dim": 1024,
+  "pca_explained_variance_ratio": [
+    0.24493958055973053,
+    0.1410120725631714
+  ]
+}

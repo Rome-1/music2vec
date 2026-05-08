@@ -1,0 +1,16 @@
+taxonomy,encoder,n_labeled,n_classes,knn_purity_k5,kmeans_ari,kmeans_nmi
+compositional_device,audio_mert95,16,2,0.912,-0.078,0.047
+compositional_device,audio_mert330,16,2,0.9,-0.078,0.047
+compositional_device,audio_muq,16,2,0.912,-0.078,0.047
+dance_type,audio_mert95,25,8,0.112,-0.051,0.421
+dance_type,audio_mert330,25,8,0.072,-0.038,0.42
+dance_type,audio_muq,25,8,0.2,0.028,0.501
+instrumentation,audio_mert95,105,3,0.89,-0.019,0.082
+instrumentation,audio_mert330,105,3,0.914,0.282,0.299
+instrumentation,audio_muq,105,3,0.859,0.082,0.171
+national_school,audio_mert95,105,1,1.0,1.0,1.0
+national_school,audio_mert330,105,1,1.0,1.0,1.0
+national_school,audio_muq,105,1,1.0,1.0,1.0
+opus_cycle,audio_mert95,105,4,0.859,0.243,0.433
+opus_cycle,audio_mert330,105,4,0.869,0.43,0.459
+opus_cycle,audio_muq,105,4,0.836,0.217,0.418

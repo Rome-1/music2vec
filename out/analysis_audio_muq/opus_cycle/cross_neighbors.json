@@ -1,0 +1,74 @@
+[
+  {
+    "a": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga XX",
+    "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Fuga I",
+    "cosine_distance": 0.0035324692726135254
+  },
+  {
+    "a": "bachjs-bwv851-bwv851-fugue06-bwv851-fugue06",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga VI",
+    "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Fuga I",
+    "cosine_distance": 0.0045013427734375
+  },
+  {
+    "a": "bachjs-bwv846-wtk1-fugue1-wtk1-fugue1",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga I",
+    "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Fuga I",
+    "cosine_distance": 0.004801273345947266
+  },
+  {
+    "a": "bachjs-bwv861-bwv861-fuga16-bwv861-fuga16",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga XVI",
+    "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Fuga I",
+    "cosine_distance": 0.006262540817260742
+  },
+  {
+    "a": "bachjs-bwv862-bach-fugue17-bach-fugue17",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga XVII",
+    "b": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Fuga II",
+    "cosine_distance": 0.006447732448577881
+  },
+  {
+    "a": "bachjs-bwv865-bwv865-praeludium20-bwv865-praeludium20",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Praeludium XX",
+    "b": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Fuga II",
+    "cosine_distance": 0.007113218307495117
+  },
+  {
+    "a": "bachjs-bwv857-bwv857-praeludium12-bwv857-praeludium12",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Praeludium XII",
+    "b": "bachjs-bwv871-wtk2-prelude2-wtk2-prelude2",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Praeludium II",
+    "cosine_distance": 0.007838249206542969
+  },
+  {
+    "a": "bachjs-bwv847-fuga2-fuga2",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga II",
+    "b": "bachjs-bwv870-wtk2prelude1-wtk2prelude1",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Praeludium I",
+    "cosine_distance": 0.008161664009094238
+  }
+]

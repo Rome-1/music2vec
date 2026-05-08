@@ -1,0 +1,32 @@
+{
+  "allemande": {
+    "work_id": "bachjs-bwv1004-bwv-1004-1-bwv-1004-1",
+    "title": "BWV 1004 Allemande",
+    "n_members": 2
+  },
+  "courante": {
+    "work_id": "bachjs-bwv1004-bwv-1004-2-bwv-1004-2",
+    "title": "BWV 1004 Courante",
+    "n_members": 2
+  },
+  "gigue": {
+    "work_id": "bachjs-bwv1006a-bwv-1006a-7g-bwv-1006a-7g",
+    "title": "Suite E-Dur - BWV 1006a - Gigue",
+    "n_members": 5
+  },
+  "gavotte": {
+    "work_id": "bachjs-bwv1012-bwv-1012-5-1-bwv-1012-5-1",
+    "title": "Cello Suite VI - BWV 1012 - Gavotte I",
+    "n_members": 5
+  },
+  "minuet": {
+    "work_id": "bachjs-bwv1006-bwv-1006-5-bwv-1006-5",
+    "title": "BWV 1006 - Menuet II",
+    "n_members": 6
+  },
+  "bourree": {
+    "work_id": "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
+    "title": "BWV 1006 - Bourr\u00e9e",
+    "n_members": 3
+  }
+}

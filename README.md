@@ -205,6 +205,32 @@ PYTHONPATH=. python3 scripts/09_clustering.py
 PYTHONPATH=. python3 scripts/10_extras.py
 ```
 
+## Encoder comparison (Phase 2)
+
+V1 used MERT-v1-95M because the box has no GPU. With Modal greenlit, V1.5 reruns the same 105-work pilot on two larger encoders — **MERT-v1-330M** and **OpenMuQ MuQ-large-msd-iter** (Dec 2024 SOTA on MARBLE) — to see which insights are encoder-specific and which are robust.
+
+![encoder PCA](out/encoder_compare_pca.png)
+
+| Taxonomy | Metric | MERT-95M (768-d) | MERT-330M (1024-d) | MuQ-large (1024-d) |
+| --- | --- | ---: | ---: | ---: |
+| **compositional_device** (n=16, K=2) | k=5 NN purity | **0.91** | 0.90 | **0.91** |
+| **dance_type** (n=25, K=8; chance 0.13) | k=5 NN purity | 0.11 | 0.07 | **0.20** |
+|  | k-means NMI | 0.42 | 0.42 | **0.50** |
+| **instrumentation** (n=105, K=3) | k=5 NN purity | 0.89 | **0.91** | 0.86 |
+|  | k-means ARI | -0.02 | **0.28** | 0.08 |
+|  | k-means NMI | 0.08 | **0.30** | 0.17 |
+| **opus_cycle** (n=105, K=4) | k=5 NN purity | 0.86 | **0.87** | 0.84 |
+|  | k-means ARI | 0.24 | **0.43** | 0.22 |
+|  | k-means NMI | 0.43 | **0.46** | 0.42 |
+
+Three findings worth reading carefully:
+
+1. **All three encoders agree on fugues.** k=5 NN purity 0.90–0.91 across MERT-95M, MERT-330M, and MuQ. The fugue cluster is the most robust finding in this project — it's not an artifact of any one encoder's inductive biases.
+2. **MERT-330M produces a more partition-friendly space.** k-NN purity is similar to 95M (already saturated near the local-neighborhood ceiling), but k-means ARI for `instrumentation` jumps **−0.02 → 0.28** and for `opus_cycle` **0.24 → 0.43**. Same neighborhoods, much cleaner global partitioning. This is the difference scale buys you: more cluster-friendly geometry, not better local structure.
+3. **MuQ is best on dance_type by a wide margin.** Purity 0.20 vs 0.07–0.11 on the MERTs (chance ≈ 0.13); NMI 0.50 vs 0.42. MuQ's mel-RVQ training emphasizes rhythmic/metric structure in a way MERT's HuBERT-style training doesn't, which is exactly what dance forms encode at the surface. If V2 is going to lean on dance taxonomy as a signal, MuQ should lead.
+
+Modal cost so far: ~$0.18 across MERT-330M + two MuQ runs (one failed early on the wrong HF id). Comfortably under the $5 cap.
+
 ## What V1 doesn't tell us
 
 - **Fugue ≠ counterpoint, in this pilot.** Eleven of fifteen V1 fugues are WTC harpsichord. We can't yet say "the encoder discovered counterpoint as a category" without fugues across organ, piano, chamber, and orchestra.

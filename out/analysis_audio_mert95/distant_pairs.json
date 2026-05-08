@@ -1,0 +1,72 @@
+[
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
+    "b": "bachjs-bwv1006a-bwv-1006a-2g-bwv-1006a-2g",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "Suite E-Dur - BWV 1006a - Loure",
+    "cosine_distance": 0.2502283453941345
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
+    "b": "bachjs-bwv1006-bwv-1006-2-bwv-1006-2",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "BWV 1006 - Loure",
+    "cosine_distance": 0.23517805337905884
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
+    "b": "bachjs-bwv1006-bwv-1006-4-bwv-1006-4",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "BWV 1006 - Menuet I",
+    "cosine_distance": 0.2274627685546875
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-8-cello",
+    "b": "bachjs-bwv1006a-bwv-1006a-2g-bwv-1006a-2g",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "Suite E-Dur - BWV 1006a - Loure",
+    "cosine_distance": 0.22605478763580322
+  },
+  {
+    "a": "bachjs-bwv1006a-bwv-1006a-3g-bwv-1006a-3g",
+    "b": "bachjs-bwv1009-cellosuite3-lys-cellosuite3",
+    "a_title": "Suite E-Dur - BWV 1006a - Gavotte en Rondeau",
+    "b_title": "BWV1009 cellosuite3-lys",
+    "cosine_distance": 0.2256961464881897
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-6-cello",
+    "b": "bachjs-bwv1006a-bwv-1006a-2g-bwv-1006a-2g",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "Suite E-Dur - BWV 1006a - Loure",
+    "cosine_distance": 0.22271430492401123
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
+    "b": "bachjs-bwv1006a-bwv-1006a-4g-bwv-1006a-4g",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "Suite E-Dur - BWV 1006a - Menuet I",
+    "cosine_distance": 0.2223902940750122
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
+    "b": "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "BWV 1006 - Bourr\u00e9e",
+    "cosine_distance": 0.22201216220855713
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
+    "b": "bachjs-bwv1006a-bwv-1006a-6g-bwv-1006a-6g",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "Suite E-Dur - BWV 1006a - Bourr\u00e9e",
+    "cosine_distance": 0.22195518016815186
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-8-cello",
+    "b": "bachjs-bwv1006-bwv-1006-2-bwv-1006-2",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "BWV 1006 - Loure",
+    "cosine_distance": 0.22087204456329346
+  }
+]

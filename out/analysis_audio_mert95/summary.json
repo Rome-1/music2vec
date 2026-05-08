@@ -1,0 +1,297 @@
+{
+  "compositional_device": {
+    "n_labeled": 16,
+    "n_classes": 2,
+    "knn_purity_k5": 0.9125,
+    "kmeans_ari": -0.0784313725490196,
+    "kmeans_nmi": 0.04688868993326225,
+    "top_outliers": [
+      [
+        "bachjs-bwv869-bwv869b-lys-bwv869b",
+        "fugue",
+        1.0183990001678467
+      ],
+      [
+        "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+        "fugue",
+        1.0154575109481812
+      ],
+      [
+        "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+        "passacaglia",
+        1.006633996963501
+      ],
+      [
+        "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+        "fugue",
+        1.005370855331421
+      ],
+      [
+        "bachjs-bwv851-bwv851-fugue06-bwv851-fugue06",
+        "fugue",
+        1.0046974420547485
+      ],
+      [
+        "bachjs-bwv856-bwv856-fugue11-bwv856-fugue11",
+        "fugue",
+        1.0033048391342163
+      ],
+      [
+        "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+        "fugue",
+        1.0024189949035645
+      ],
+      [
+        "bachjs-bwv846-wtk1-fugue1-wtk1-fugue1",
+        "fugue",
+        1.0020411014556885
+      ],
+      [
+        "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
+        "fugue",
+        1.0014477968215942
+      ],
+      [
+        "bachjs-bwv847-fuga2-fuga2",
+        "fugue",
+        0.9993390440940857
+      ]
+    ]
+  },
+  "dance_type": {
+    "n_labeled": 25,
+    "n_classes": 8,
+    "knn_purity_k5": 0.112,
+    "kmeans_ari": -0.050761421319796954,
+    "kmeans_nmi": 0.4214390676167681,
+    "top_outliers": [
+      [
+        "bachjs-bwv1004-bwv-1004-4-giga-bwv-1004-4-giga",
+        "gigue",
+        1.182409644126892
+      ],
+      [
+        "bachjs-bwv1004-bwv-1004-1-bwv-1004-1",
+        "allemande",
+        1.0944619178771973
+      ],
+      [
+        "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
+        "bourree",
+        1.045498013496399
+      ],
+      [
+        "bachjs-bwv1006-bwv-1006-7-bwv-1006-7",
+        "gigue",
+        1.0354660749435425
+      ],
+      [
+        "bachjs-bwv1006-bwv-1006-3-bwv-1006-3",
+        "gavotte",
+        1.0147005319595337
+      ],
+      [
+        "bachjs-bwv1006-bwv-1006-5-bwv-1006-5",
+        "minuet",
+        1.011077880859375
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
+        "bourree",
+        1.0069546699523926
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+        "minuet",
+        1.0051263570785522
+      ],
+      [
+        "bachjs-bwv1004-bwv-1004-2-bwv-1004-2",
+        "courante",
+        1.0033475160598755
+      ],
+      [
+        "bachjs-bwv1012-bwv-1012-3-bwv-1012-3",
+        "courante",
+        1.002973198890686
+      ]
+    ]
+  },
+  "instrumentation": {
+    "n_labeled": 105,
+    "n_classes": 3,
+    "knn_purity_k5": 0.8895238095238095,
+    "kmeans_ari": -0.018816881421670435,
+    "kmeans_nmi": 0.08234579488503127,
+    "top_outliers": [
+      [
+        "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
+        "solo_keyboard_harpsichord",
+        2.5761237144470215
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-5-cello",
+        "unaccompanied_string",
+        1.8221300840377808
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-3g-bwv-1006a-3g",
+        "unaccompanied_string",
+        1.6013678312301636
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-4-cello",
+        "unaccompanied_string",
+        1.5217128992080688
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-6-cello",
+        "unaccompanied_string",
+        1.5061978101730347
+      ],
+      [
+        "bachjs-bwv871-wtk2-prelude2-wtk2-prelude2",
+        "solo_keyboard_harpsichord",
+        1.4844322204589844
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-1-cello",
+        "unaccompanied_string",
+        1.4488780498504639
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-1g-bwv-1006a-1g",
+        "unaccompanied_string",
+        1.4477802515029907
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-8-cello",
+        "unaccompanied_string",
+        1.4314367771148682
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-2-cello",
+        "unaccompanied_string",
+        1.4229110479354858
+      ]
+    ]
+  },
+  "opus_cycle": {
+    "n_labeled": 105,
+    "n_classes": 4,
+    "knn_purity_k5": 0.8590476190476191,
+    "kmeans_ari": 0.24268938211262361,
+    "kmeans_nmi": 0.43276691177890636,
+    "top_outliers": [
+      [
+        "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
+        "bach_wtc_2",
+        2.5761237144470215
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-5-cello",
+        "bach_solo_violin",
+        1.8221300840377808
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-3g-bwv-1006a-3g",
+        "bach_solo_violin",
+        1.6013678312301636
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-4-cello",
+        "bach_solo_violin",
+        1.5217128992080688
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-6-cello",
+        "bach_solo_violin",
+        1.5061978101730347
+      ],
+      [
+        "bachjs-bwv871-wtk2-prelude2-wtk2-prelude2",
+        "bach_wtc_2",
+        1.4844322204589844
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-1-cello",
+        "bach_solo_violin",
+        1.4488780498504639
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-1g-bwv-1006a-1g",
+        "bach_solo_violin",
+        1.4477802515029907
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-8-cello",
+        "bach_solo_violin",
+        1.4314367771148682
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-2-cello",
+        "bach_solo_violin",
+        1.4229110479354858
+      ]
+    ]
+  },
+  "national_school": {
+    "n_labeled": 105,
+    "n_classes": 1,
+    "knn_purity_k5": 1.0,
+    "kmeans_ari": 1.0,
+    "kmeans_nmi": 1.0,
+    "top_outliers": [
+      [
+        "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
+        "german_contrapuntal",
+        2.5761237144470215
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-5-cello",
+        "german_contrapuntal",
+        1.8221300840377808
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-3g-bwv-1006a-3g",
+        "german_contrapuntal",
+        1.6013678312301636
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-4-cello",
+        "german_contrapuntal",
+        1.5217128992080688
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-6-cello",
+        "german_contrapuntal",
+        1.5061978101730347
+      ],
+      [
+        "bachjs-bwv871-wtk2-prelude2-wtk2-prelude2",
+        "german_contrapuntal",
+        1.4844322204589844
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-1-cello",
+        "german_contrapuntal",
+        1.4488780498504639
+      ],
+      [
+        "bachjs-bwv1006a-bwv-1006a-1g-bwv-1006a-1g",
+        "german_contrapuntal",
+        1.4477802515029907
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-8-cello",
+        "german_contrapuntal",
+        1.4314367771148682
+      ],
+      [
+        "bachjs-bwv1002-partita-1-lys-2-cello",
+        "german_contrapuntal",
+        1.4229110479354858
+      ]
+    ]
+  }
+}

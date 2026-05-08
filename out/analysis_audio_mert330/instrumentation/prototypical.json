@@ -1,0 +1,17 @@
+{
+  "unaccompanied_string": {
+    "work_id": "bachjs-bwv1001-bwv-1001-1-bwv-1001-1",
+    "title": "BWV 1001 Adagio",
+    "n_members": 72
+  },
+  "solo_keyboard_piano": {
+    "work_id": "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+    "title": "BWV 1006a - Menuet II",
+    "n_members": 9
+  },
+  "solo_keyboard_harpsichord": {
+    "work_id": "bachjs-bwv865-bwv865-praeludium20-bwv865-praeludium20",
+    "title": "Das Wohltemperierte Clavier I, Praeludium XX",
+    "n_members": 24
+  }
+}
