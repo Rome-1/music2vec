@@ -1,0 +1,23 @@
+# music2vec — ignore heavy/derived artifacts; keep CSVs + small projections + figures
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+
+# Raw MIDI corpora (re-acquirable from sources)
+data/raw/
+
+# Rendered audio (re-derivable from MIDI)
+data/audio/
+
+# High-dim embeddings (large; re-derivable from audio)
+data/embeddings/
+
+# SoundFonts (large binary; bring-your-own)
+*.sf2
+*.sf3
+
+# Notebooks / scratch
+*.ipynb
+scratch/
