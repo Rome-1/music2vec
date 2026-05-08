@@ -1,0 +1,74 @@
+[
+  {
+    "a": "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+    "a_label": "fugue",
+    "a_title": "BWV 1001 Fuga",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.032669246196746826
+  },
+  {
+    "a": "bachjs-bwv869-bwv869b-lys-bwv869b",
+    "a_label": "fugue",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga XXIV",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.03496885299682617
+  },
+  {
+    "a": "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+    "a_label": "fugue",
+    "a_title": "Fuga 15 - BWV 860",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.038559794425964355
+  },
+  {
+    "a": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+    "a_label": "fugue",
+    "a_title": "Das Wohltemperierte Clavier II, Fuga II",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.0475350022315979
+  },
+  {
+    "a": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+    "a_label": "fugue",
+    "a_title": "Das Wohltemperierte Clavier II, Fuga I",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.053657591342926025
+  },
+  {
+    "a": "bachjs-bwv851-bwv851-fugue06-bwv851-fugue06",
+    "a_label": "fugue",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga VI",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.053730309009552
+  },
+  {
+    "a": "bachjs-bwv856-bwv856-fugue11-bwv856-fugue11",
+    "a_label": "fugue",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga XI",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.053966403007507324
+  },
+  {
+    "a": "bachjs-bwv862-bach-fugue17-bach-fugue17",
+    "a_label": "fugue",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga XVII",
+    "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
+    "b_label": "passacaglia",
+    "b_title": "BWV 1004 Chaconne",
+    "cosine_distance": 0.05509543418884277
+  }
+]

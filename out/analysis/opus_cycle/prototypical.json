@@ -1,0 +1,22 @@
+{
+  "bach_solo_violin": {
+    "work_id": "bachjs-bwv1002-partita-1-lys-7-viola",
+    "title": "BWV1002 partita-1-lys",
+    "n_members": 61
+  },
+  "bach_cello_suites": {
+    "work_id": "bachjs-bwv1012-bwv-1012-3-bwv-1012-3",
+    "title": "Cello Suite VI - BWV 1012 - Courante",
+    "n_members": 18
+  },
+  "bach_wtc_1": {
+    "work_id": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
+    "title": "Das Wohltemperierte Clavier I, Fuga XX",
+    "n_members": 21
+  },
+  "bach_wtc_2": {
+    "work_id": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+    "title": "Das Wohltemperierte Clavier II, Fuga II",
+    "n_members": 5
+  }
+}

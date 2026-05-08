@@ -1,0 +1,17 @@
+{
+  "unaccompanied_string": {
+    "work_id": "bachjs-bwv1002-partita-1-lys-7-viola",
+    "title": "BWV1002 partita-1-lys",
+    "n_members": 72
+  },
+  "solo_keyboard_piano": {
+    "work_id": "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+    "title": "BWV 1006a - Menuet II",
+    "n_members": 9
+  },
+  "solo_keyboard_harpsichord": {
+    "work_id": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
+    "title": "Das Wohltemperierte Clavier I, Fuga XX",
+    "n_members": 24
+  }
+}
