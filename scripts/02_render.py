@@ -60,15 +60,52 @@ def render_with_fluidsynth(midi: Path, sf2: Path, out_wav: Path) -> bool:
 
 
 def crop_windows(full_wav: Path, work_id: str, seed: int) -> list[Path]:
-    """Cut three 30s windows: start, middle, random-seeded. Stub:
-    actual cropping uses soundfile/librosa in the production version."""
+    """Cut three 30s windows: start, middle, random-seeded.
+
+    For works shorter than 30s, the full clip is used and zero-padded
+    to the window length (rare for classical movements). For works
+    shorter than 90s, the three windows can overlap.
+    """
+    import numpy as np
+    import soundfile as sf
+
     AUDIO_DIR.mkdir(parents=True, exist_ok=True)
     work_dir = AUDIO_DIR / work_id
     work_dir.mkdir(exist_ok=True)
-    # Real impl: soundfile.read full_wav, slice to 3 windows, write.
-    # Placeholder: create stamps so resumability logic works in tests.
-    stamps = [work_dir / f"w{i}.wav" for i in range(3)]
-    return stamps
+
+    audio, sr = sf.read(str(full_wav), dtype="float32")
+    if audio.ndim > 1:
+        audio = audio.mean(axis=1)
+
+    win = WINDOW_SEC * sr
+    n = len(audio)
+    if n < win:
+        pad = np.zeros(win, dtype=np.float32)
+        pad[:n] = audio
+        audio = pad
+        n = win
+
+    rng = random.Random(seed)
+    starts = [
+        0,
+        max(0, n // 2 - win // 2),
+        rng.randint(0, max(0, n - win)),
+    ]
+    out_paths = []
+    for i, s in enumerate(starts):
+        clip = audio[s : s + win]
+        if len(clip) < win:
+            clip = np.pad(clip, (0, win - len(clip)))
+        path = work_dir / f"w{i}.wav"
+        sf.write(str(path), clip, sr, subtype="PCM_16")
+        out_paths.append(path)
+
+    # Drop the full render once windows are written; it's the heavy file.
+    try:
+        full_wav.unlink()
+    except OSError:
+        pass
+    return out_paths
 
 
 def main() -> int:
