@@ -2,7 +2,9 @@
 
 A music-domain analogue of Figure 3 in [emoji2vec](https://arxiv.org/abs/1609.08359) (Eisner et al., 2016) — and an exploration of what a frozen music encoder's embedding space says about public-domain musical works.
 
-> 🚧 **Status:** scaffold / pre-data. The pipeline runs end-to-end on a synthetic 5-work fixture; corpus acquisition is the next milestone.
+![hero](out/latent_works.png)
+
+> **Status: pilot landed.** 105 Bach works (WTC I/II + solo violin + cello suites) embedded with MERT-v1-95M. Headline: **fugues cluster at 91% k=5 NN purity**, with PHATE compactness **0.37** — the encoder discovered counterpoint as a category without being told.
 
 emoji2vec's Figure 3 projects 1,661 emoji embeddings to 2D with t-SNE and renders each emoji glyph at its position. Clusters of similar emojis (smileys, animals, fruits, flags) emerge from a *language*-derived embedding space — and notably, in the original paper, all the country flags pile into one undifferentiated cluster. The flags-cluster inspired sister project [flag2vec](https://github.com/Rome-1/flag2vec); this project asks the parallel question of music.
 
@@ -19,9 +21,26 @@ The bet: a frozen, off-the-shelf music encoder will recover **compositional gram
 - **Projections:** **PCA (hero)**, t-SNE (perplexity 30, cosine), UMAP (n_neighbors 15, cosine), PHATE (knn 15, decay 20).
 - **Annotation:** six hand-curated taxonomies in `music2vec/taxonomies.py`.
 
-## The hero figure (planned layout)
+## The hero figure
 
-PCA on top spanning the full width, with t-SNE / UMAP / PHATE in a row of three secondary panels below. Soft hulls only where a category's `compactness < 0.65 × global mean pairwise distance` (flag2vec's honesty constraint). Each work is rendered at its 2D position as a thumbnail of the score's first system; works with no available score render as a composer monogram.
+PCA on top spanning the full width, with t-SNE / UMAP / PHATE in a row of three secondary panels below. Soft hulls only where a category's `compactness < 0.65 × global mean pairwise distance` (flag2vec's honesty constraint). V1 marks are circles; score-thumbnail marks (rendered first system per work) are deferred to a follow-up.
+
+## What the embedding actually clusters on
+
+V1 corpus is Bach-only (105 works) so most of the six taxonomies degenerate or apply trivially. The headline result lives in **compositional device** — the only taxonomy that varies orthogonally to instrumentation in this pilot. All numbers below are on **frozen MERT-v1-95M, mean-pooled across 3 × 30 s windows of FluidSynth-rendered audio**.
+
+| Taxonomy | n | K | k=5 NN purity | Compactness (PHATE) | Reading |
+| --- | ---: | ---: | ---: | ---: | --- |
+| **Compositional device** (fugue + passacaglia) | 16 | 2 | **0.91** | **0.37** | Fugues form one of the two tightest clusters in the figure. The hull is uninterrupted across PCA, t-SNE, UMAP, PHATE. |
+| Instrumentation (harpsichord / piano / unaccompanied string) | 105 | 3 | 0.89 | — | The workhorse: timbre dominates. Expected. Confirms the projection is meaningful. |
+| Opus cycle (WTC I, WTC II, solo violin, cello suites) | 105 | 4 | 0.86 | — | k-means partially recovers (ARI 0.24, NMI 0.43). Cycles cohere; the boundaries between WTC I and WTC II are softer than between WTC and the string works. |
+| Dance type (8 forms across 25 movements) | 25 | 8 | 0.11 | — | At chance (1/8 ≈ 0.125). NMI 0.42 says k-means *finds* structure, just not aligned with dance labels — suggests the cello-suite movements cluster more by suite-of-origin than by dance type within a Bach-only corpus. |
+| National school | 105 | 1 | — | — | Trivial in V1 (all `german_contrapuntal`). |
+| Sacred function | 1 | 1 | — | — | One motet (BWV 878 *Spiritus Domini*); not enough for a hull. |
+
+**Caveat.** The 91% fugue purity is partially confounded with the WTC-harpsichord instrumentation: 11 of the 15 fugues are WTC keyboard fugues. The four solo-violin fugues (BWV 1001 / 1003 / 1005) sit in a *different* sub-region in PHATE, but inside the same outer hull — so the encoder is grouping fugues despite different timbre, not just by timbre. To fully honor the headline claim we need fugues across more timbres (organ, piano, chamber, orchestra) — coming in the next push.
+
+**Honest outliers.** LOF on the embedding flags consistent visual outliers across taxonomies: the BWV 878 *Spiritus Domini* motet (which my labeler mistakenly tagged as harpsichord — fix coming), and the BWV 1002 partita-as-cello transcriptions (the audio is genuinely thin and high-variance because cello transposes the violin part down). The encoder agrees they're unusual.
 
 ## The six taxonomies
 
