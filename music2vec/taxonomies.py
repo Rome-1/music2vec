@@ -119,6 +119,7 @@ NATIONAL_SCHOOL = {
     "german_contrapuntal":   "#1F3F6E",
     "french_clavecinistes":  "#6E5C9C",
     "italian_operatic":      "#A02C2C",
+    "polish_romantic":       "#A04C2C",   # Chopin and successors
     "mighty_handful":        "#7E2F2F",
     "czech_nationalist":     "#5C7C46",
     "iberian":               "#C0892F",
@@ -127,7 +128,7 @@ NATIONAL_SCHOOL = {
     "second_viennese":       "#3D3D3D",
     "les_six":               "#8E6A4A",
     "american_vernacular":   "#3F73B8",
-    "hungarian_folk_based":  "#A04C2C",
+    "hungarian_folk_based":  "#7E5A1F",   # Bartók/Kodály/Liszt rhapsodies
 }
 
 

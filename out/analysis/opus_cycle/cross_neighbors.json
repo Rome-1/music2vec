@@ -15,7 +15,7 @@
     "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
     "b_label": "beethoven_32_sonatas",
     "b_title": "Sonata No. 32 (1st Movement)",
-    "cosine_distance": 0.0028291940689086914
+    "cosine_distance": 0.002829313278198242
   },
   {
     "a": "bachjs-bwv856-bwv856-praeludium11-bwv856-praeludium11",
@@ -33,7 +33,7 @@
     "b": "bachjs-bwv875-bwv875a-bwv875a",
     "b_label": "bach_wtc_2",
     "b_title": "Das Wohltemperierte Clavier II, Praeludium VI",
-    "cosine_distance": 0.010263025760650635
+    "cosine_distance": 0.010263204574584961
   },
   {
     "a": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
@@ -69,6 +69,6 @@
     "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
     "b_label": "bach_wtc_2",
     "b_title": "Das Wohltemperierte Clavier II, Fuga I",
-    "cosine_distance": 0.013233065605163574
+    "cosine_distance": 0.013232886791229248
   }
 ]

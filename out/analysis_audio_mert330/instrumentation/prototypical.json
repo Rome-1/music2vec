@@ -2,16 +2,36 @@
   "unaccompanied_string": {
     "work_id": "bachjs-bwv1002-partita-1-lys-7-viola",
     "title": "BWV1002 partita-1-lys",
-    "n_members": 72
+    "n_members": 70
   },
   "solo_keyboard_piano": {
-    "work_id": "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
-    "title": "BWV 1006a - Menuet II",
-    "n_members": 9
+    "work_id": "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+    "title": "Prelude",
+    "n_members": 42
+  },
+  "lute_guitar_solo": {
+    "work_id": "bachjs-bwv1006a-bwv-1006a-5g-bwv-1006a-5g",
+    "title": "Suite E-Dur - BWV 1006a - Menuet II",
+    "n_members": 8
   },
   "solo_keyboard_harpsichord": {
     "work_id": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
     "title": "Das Wohltemperierte Clavier I, Fuga XX",
-    "n_members": 24
+    "n_members": 35
+  },
+  "satb_a_cappella": {
+    "work_id": "mozartwa-aveverumm-aveverumm-aveverumm",
+    "title": "Ave, verum corpus",
+    "n_members": 2
+  },
+  "string_quartet": {
+    "work_id": "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt3",
+    "title": "O96 parts",
+    "n_members": 7
+  },
+  "full_orchestra": {
+    "work_id": "vivaldia-o8-autumn-lys-autumn-score",
+    "title": "O8 autumn-lys",
+    "n_members": 2
   }
 }

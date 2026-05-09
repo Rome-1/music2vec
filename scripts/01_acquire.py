@@ -139,7 +139,7 @@ def year_from_date(date: str) -> str:
     return m.group(1) if m else ""
 
 
-def compile_to_midi(ly_path: Path, out_dir: Path, timeout: int = 120) -> Path | None:
+def compile_to_midi(ly_path: Path, out_dir: Path, timeout: int = 300) -> Path | None:
     """Compile a .ly file with lilypond, return path to generated .midi.
 
     Note: many Mutopia .ly files target old LilyPond syntax versions and

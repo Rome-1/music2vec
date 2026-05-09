@@ -10,13 +10,13 @@ This project asks the parallel question of music.
 
 > Do *audio* embeddings of public-domain musical works recover the *compositional / formal / cultural* groupings a music historian would draw by hand — fugues across instruments, dance forms by metric signature, sacred function across centuries, opus cycles as coherent blobs?
 
-**Short answer (V2, n=171 across 6 composers):** yes for compositional grammar (across encoders), yes for instrumentation (dominates), yes for opus cycles as coherent blobs, yes — newly — for **national school**: 0.80–0.84 NN purity on 4 hand-labelled schools (German contrapuntal / Polish-Romantic / Czech-nationalist / Italian-operatic). Fugue robustness is the most confidence-inspiring finding: k=5 NN purity stays **0.92–0.93** across MERT-v1-95M, MERT-v1-330M, and MuQ-large. The biggest visual surprise is Chopin: his Op. 28 Preludes form a hull with PHATE compactness 0.13 / UMAP 0.19, completely separate from the Bach-dominated rest of the figure.
+**Short answer (V3, n=179 across 6 composers):** yes for compositional grammar (across encoders), yes for instrumentation (dominates), yes for opus cycles as coherent blobs, yes for **national school**: 0.79–0.83 NN purity on 4 hand-labelled schools (German contrapuntal / Polish-Romantic / Czech-nationalist / Italian-operatic). Fugue robustness is the most confidence-inspiring finding: k=5 NN purity stays **0.92–0.93** across MERT-v1-95M, MERT-v1-330M, and MuQ-large. The biggest visual surprise is Chopin: his Polish-Romantic piano writing forms a hull with PHATE compactness 0.12 / UMAP 0.15, completely separate from the Bach-dominated rest of the figure.
 
-The Bach-only baseline numbers from V1 are preserved for reference further down. The V2 findings layer on top, not replace them.
+The Bach-only baseline numbers from V1 are preserved for reference further down. The V3 findings layer on top, not replace them.
 
 ## Method
 
-- **Source corpus.** Public-domain LilyPond scores from the [Mutopia Project](https://www.mutopiaproject.org/), compiled to MIDI by [LilyPond](http://lilypond.org/) itself. V2 covers six composers: **Bach** (WTC I/II BWV 846–878, solo violin BWV 1001–1006, cello suites BWV 1007–1012; n=121), **Beethoven** (Op. 27 Moonlight, Op. 13 Pathétique, Op. 106 Hammerklavier, Op. 111, Op. 137 Fugue; n=9), **Chopin** (Op. 28 Preludes, Op. 10 + Op. 25 Études; n=26), **Dvořák** (Op. 96 American Quartet + Op. 4; n=8), **Mozart** (n=5), **Vivaldi** (Four Seasons; n=2). 171 movements after dedup of failed compiles. Bach over-represented because the V1 baseline is preserved — V3 will rebalance.
+- **Source corpus.** Public-domain LilyPond scores from the [Mutopia Project](https://www.mutopiaproject.org/), compiled to MIDI by [LilyPond](http://lilypond.org/) itself. V3 covers six composers: **Bach** (WTC I/II BWV 846–878, solo violin BWV 1001–1006, cello suites BWV 1007–1012; n=121), **Beethoven** (Op. 13 Pathétique, Op. 27 Moonlight, Op. 106 Hammerklavier, Op. 111, Op. 137 Fugue; n=12), **Chopin** (Op. 28 Preludes, Op. 10 + Op. 25 Études; n=26), **Dvořák** (Op. 96 American Quartet + Op. 4; n=12), **Mozart** (KV 525 Eine Kleine, KV 622 Clarinet Concerto, KV 626 Requiem Dies Irae, KV 618 Ave Verum Corpus; n=6), **Vivaldi** (Four Seasons — Summer, Autumn; n=2). 179 movements after dedup of failed compiles. Bach over-represented because the V1 baseline is preserved — V4 will rebalance.
 - **Audio rendering.** [FluidSynth](https://www.fluidsynth.org/) with the FluidR3 General-MIDI SoundFont, 24 kHz mono. Three 30 s windows per work — start / middle / random-seeded — to wash out window-position artifacts.
 - **Audio encoder.** [`m-a-p/MERT-v1-95M`](https://huggingface.co/m-a-p/MERT-v1-95M), frozen, self-supervised on ~160k hours of music. Mean-pool last hidden state across time → one 768-d vector per window → mean across the three windows → one 768-d vector per work. (V2 will rerun on MERT-v1-330M and MuQ-large via Modal GPU.)
 - **Projections.** **PCA** (hero), t-SNE (perplexity 30, cosine), UMAP (n_neighbors 15, cosine), PHATE (knn 15, decay 20).
@@ -217,19 +217,20 @@ All three encoders run on Modal A10G — `m-a-p/MERT-v1-95M` (768-d, the V1 CPU 
 | --- | ---: | ---: | --- | ---: | ---: | ---: |
 | **compositional_device** | 21 | 2 | MERT-95M | **0.93** | -0.05 | 0.01 |
 |  |  |  | MERT-330M | 0.92 | -0.06 | 0.04 |
-|  |  |  | MuQ-large | **0.93** | **0.14** | **0.16** |
+|  |  |  | MuQ-large | **0.93** | -0.06 | 0.04 |
 | dance_type (chance 0.13) | 26 | 8 | MERT-95M | 0.11 | -0.05 | 0.42 |
-|  |  |  | MERT-330M | 0.06 | -0.04 | 0.41 |
+|  |  |  | MERT-330M | 0.06 | -0.03 | 0.43 |
 |  |  |  | MuQ-large | **0.18** | **0.03** | **0.49** |
-| instrumentation | 166 | 7 | MERT-95M | 0.72 | 0.24 | **0.42** |
-|  |  |  | MERT-330M | **0.74** | 0.18 | 0.33 |
-|  |  |  | MuQ-large | 0.71 | **0.25** | 0.36 |
-| **national_school** | 171 | 4 | MERT-95M | 0.81 | -0.04 | 0.15 |
-|  |  |  | MERT-330M | 0.80 | 0.00 | 0.20 |
-|  |  |  | MuQ-large | **0.84** | **0.14** | **0.24** |
-| **opus_cycle** | 154 | 8 | MERT-95M | 0.68 | **0.36** | **0.55** |
-|  |  |  | MERT-330M | **0.71** | 0.24 | 0.46 |
-|  |  |  | MuQ-large | 0.70 | 0.34 | **0.55** |
+| instrumentation | 172 | 8 | MERT-95M | 0.72 | **0.29** | **0.45** |
+|  |  |  | MERT-330M | **0.73** | 0.20 | 0.37 |
+|  |  |  | MuQ-large | 0.72 | 0.25 | 0.40 |
+| **national_school** | 179 | 4 | MERT-95M | 0.80 | -0.04 | 0.15 |
+|  |  |  | MERT-330M | 0.79 | 0.00 | 0.17 |
+|  |  |  | MuQ-large | **0.83** | **0.12** | **0.20** |
+| **opus_cycle** | 157 | 8 | MERT-95M | 0.69 | **0.34** | **0.54** |
+|  |  |  | MERT-330M | **0.70** | 0.25 | 0.46 |
+|  |  |  | MuQ-large | 0.69 | 0.27 | 0.47 |
+| sacred_function | 3 | 2 | (n too small for purity stats — 1 requiem + 2 motets) | — | — | — |
 
 Five things worth reading carefully:
 
@@ -239,28 +240,27 @@ Five things worth reading carefully:
 4. **Opus cycle on 8 classes is hard but real.** Adding Chopin's three opus cycles + Beethoven's sonata cycle to the four Bach cycles drops NN purity from V1's 0.86 (K=4) to 0.68–0.71 (K=8). But ARI/NMI go *up*: MERT-95M scores ARI 0.36, NMI 0.55. The cycles do partition; some just live closer in latent space than others.
 5. **MuQ is best on dance — same finding as V1, slightly stronger.** Purity 0.18 vs 0.06–0.11 on the MERTs; NMI 0.49 vs 0.42. MuQ's mel-RVQ training appears to weight rhythmic/metric structure more, exactly what dance forms encode at the surface. If V3 leans on dance taxonomy as a signal, MuQ should lead.
 
-The biggest visual surprise of V2 is **Chopin**:
+The biggest visual surprise of V3 is **Chopin**:
 
-![chopin op28](out/categories/opus_cycle/chopin_op28_preludes.png)
+![chopin polish romantic](out/categories/national_school/polish_romantic.png)
 
-Op. 28 Preludes (n=22) form a hull with **PHATE compactness 0.13 / UMAP 0.19** — tighter than fugues, tighter than any cycle so far. The same works appear under `national_school/hungarian_folk_based.png` (the Polish/pan-Slavic slot was unpopulated in V2's taxonomies; mislabeled here, will correct in V3). The encoder doesn't know what a Chopin prelude is, but it knows that a piano work with this dynamics envelope, this rubato register, and this voicing density is *very different* from a Bach harpsichord prelude — and pulls them all together.
+Polish-Romantic hull (n=26 — Op. 28 Preludes + Op. 10 + Op. 25 Études) has **PHATE compactness 0.12 / UMAP 0.15** — tighter than fugues, tighter than any cycle so far. The encoder doesn't know what a Chopin prelude is, but it knows that a piano work with this dynamics envelope, this rubato register, and this voicing density is *very different* from a Bach harpsichord prelude — and pulls them all together.
 
-Modal cost so far: **~$0.42** across two encoder×corpus passes. Comfortably under the $5 cap.
+Modal cost so far: **~$0.65** across three encoder×corpus passes (V1.5 + V2 + V3). Comfortably under the $5 cap.
 
-## What V2 still doesn't tell us
+## What V3 still doesn't tell us
 
-- **Fugue ≠ counterpoint, fully.** V2 added the Beethoven Op. 137 string-quartet fugue and the Bach BWV 1011 transcribed fugue — they joined the cluster rather than disturbing it. But the corpus still has zero piano fugues that aren't WTC, zero orchestral fugues, zero choral fugues. To honor "the encoder discovered counterpoint" we still need a Hammerklavier finale that successfully compiles, a Mozart Requiem `Kyrie`, a Handel Messiah `Amen`. (Several of those are in the V2 ingest list and timed out in lilypond; V3 raises the per-piece compile timeout.)
-- **Sacred function is still unpopulated.** V2 targeted Mozart Requiem and Handel Messiah; both timed out. One labeled motet (BWV 878 Spiritus Domini) is the entire taxonomy.
-- **Dance type is still undertested.** Adding Chopin Op. 28 didn't expand dance coverage because preludes aren't dances. V3 needs explicit Chopin mazurkas + waltzes + polonaises.
-- **National school taxonomy needs a polish.** Chopin is currently labeled `hungarian_folk_based` because the V2 taxonomy didn't have a `polish_romantic` slot; the data overwhelmingly says he should have one.
-- **Bach is still over-represented** at 121 of 171 works (71%). V3 should aim for &lt; 30% any single composer.
+- **Fugue ≠ counterpoint, fully.** V3 added the Mozart Requiem Dies Irae movement (which contains a fugal *Confutatis*); the Beethoven Op. 137 string-quartet fugue and Bach BWV 1011 transcribed fugues from V2 stayed in cluster. But the corpus still has zero successfully-compiled Handel Messiah movements (the Mutopia source crashed lilypond at 300 s as well), zero Hammerklavier finale, zero orchestral fugues. To fully honor "the encoder discovered counterpoint" we need fugues across more timbres still.
+- **Sacred function is barely populated** — 3 labels (1 requiem, 2 motets). Statistically meaningless. Need Bach cantatas, Palestrina motets, Vivaldi Gloria, Handel Messiah, Mozart full Requiem.
+- **Dance type is still undertested.** Adding Chopin Op. 28 didn't expand dance coverage because preludes aren't dances. V4 needs explicit Chopin mazurkas + waltzes + polonaises.
+- **Bach is still over-represented** at 121 of 179 works (68%). V4 should aim for < 30% any single composer.
 
-## V3 roadmap
+## V4 roadmap
 
-1. **Rebalance the corpus.** Cap Bach at ~80 works; expand non-Bach to ~500 works. Raise the per-piece lilypond timeout from 120 s to 300 s to capture the works that V2 timed out on (Mozart Requiem, Handel Messiah, Beethoven Hammerklavier finale). Add Schubert, Debussy, Pärt, Palestrina, Scarlatti, Couperin, Mendelssohn, Bartók.
-2. **Add `polish_romantic` to the national_school taxonomy.** Re-label Chopin from `hungarian_folk_based`.
-3. **Symbolic comparison.** Add `microsoft/musicbert` on raw MIDI tokens — the audio-vs-symbolic side-by-side is the strongest single artifact this project can produce. Especially interesting now: does symbolic *also* recover the Chopin cluster, or is it specific to audio's dynamics/voicing channel?
-4. **Score thumbnails.** Render each work's first system as a small PNG and use it as the figure mark, the way flag2vec uses the flag itself. Currently the marks are circles.
+1. **Symbolic comparison via MusicBERT.** Add `microsoft/musicbert` on raw MIDI tokens — the audio-vs-symbolic side-by-side is the strongest single artifact this project can produce. Especially interesting now: does symbolic *also* recover the Chopin cluster, or is it specific to audio's dynamics/voicing channel?
+2. **Cross-composer fugue probe.** Quantify whether the Beethoven Op. 137 + Bach 1011 violin fugues sit nearer to WTC fugues than to non-fugue works in their *own* instrumentation. One number, one figure, closes the V1 caveat directly.
+3. **Score thumbnails.** Render each work's first system as a small PNG and use it as the figure mark, the way flag2vec uses the flag itself. Currently the marks are circles.
+4. **Rebalance the corpus.** Cap Bach at ~80 works; expand non-Bach to ~500 works. Add Schubert, Debussy, Pärt, Palestrina, Scarlatti, Couperin, Mendelssohn, Bartók.
 5. **Better hulls.** Era as a background gradient under the categorical hulls (currently just text in this README).
 
 ## License

@@ -15,7 +15,7 @@
     "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
     "b_label": "solo_keyboard_piano",
     "b_title": "Sonata No. 32 (1st Movement)",
-    "cosine_distance": 0.0028291940689086914
+    "cosine_distance": 0.002829313278198242
   },
   {
     "a": "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
@@ -24,7 +24,7 @@
     "b": "bachjs-bwv855-bwv855b-bwv855b",
     "b_label": "solo_keyboard_harpsichord",
     "b_title": "Das Wohltemperierte Clavier I, Fuga X",
-    "cosine_distance": 0.012328624725341797
+    "cosine_distance": 0.012328505516052246
   },
   {
     "a": "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
@@ -33,7 +33,7 @@
     "b": "bachjs-bwv856-bwv856-praeludium11-bwv856-praeludium11",
     "b_label": "solo_keyboard_harpsichord",
     "b_title": "Das Wohltemperierte Clavier I, Praeludium XI",
-    "cosine_distance": 0.012935161590576172
+    "cosine_distance": 0.012935280799865723
   },
   {
     "a": "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
@@ -60,7 +60,7 @@
     "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
     "b_label": "solo_keyboard_piano",
     "b_title": "Sonata No. 32 (1st Movement)",
-    "cosine_distance": 0.015124201774597168
+    "cosine_distance": 0.015124380588531494
   },
   {
     "a": "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",

@@ -2,21 +2,36 @@
   "bach_solo_violin": {
     "work_id": "bachjs-bwv1002-partita-1-lys-7-viola",
     "title": "BWV1002 partita-1-lys",
-    "n_members": 61
+    "n_members": 62
   },
   "bach_cello_suites": {
     "work_id": "bachjs-bwv1012-bwv-1012-3-bwv-1012-3",
     "title": "Cello Suite VI - BWV 1012 - Courante",
-    "n_members": 18
+    "n_members": 21
   },
   "bach_wtc_1": {
     "work_id": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
     "title": "Das Wohltemperierte Clavier I, Fuga XX",
-    "n_members": 21
+    "n_members": 31
   },
   "bach_wtc_2": {
     "work_id": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
     "title": "Das Wohltemperierte Clavier II, Fuga II",
-    "n_members": 5
+    "n_members": 7
+  },
+  "beethoven_32_sonatas": {
+    "work_id": "beethovenlv-o27-moonlight-lys-moonlight2-a4",
+    "title": "Sonata No. 14 \u201cMoonlight\u201d (2nd Movement: Allegretto)",
+    "n_members": 8
+  },
+  "chopin_op10_etudes": {
+    "work_id": "chopinff-o10-chopin-op-10-09-wfi-chopin-op-10-09-wfi",
+    "title": "Et\u00fcde f-moll",
+    "n_members": 2
+  },
+  "chopin_op28_preludes": {
+    "work_id": "chopinff-o28-chop-28-12-chop-28-12",
+    "title": "Pr\u00e9lude 12",
+    "n_members": 22
   }
 }

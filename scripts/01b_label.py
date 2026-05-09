@@ -189,9 +189,7 @@ def label_national_school(row: dict) -> str | None:
     if "handelgf" in parent or composer == "handelgf":
         return "german_contrapuntal"  # German-born; later naturalized British
     if "chopinff" in parent or composer == "chopinff":
-        return "hungarian_folk_based"  # closest hull in current taxonomy;
-        # treat as "folk-tradition Romantic". (Polish, but no pan-Slavic
-        # category populated yet.)  TODO: add `polish_romantic` slot.
+        return "polish_romantic"
     if "dvoraka" in parent or composer == "dvoraka":
         return "czech_nationalist"
     if "vivaldia" in parent or composer == "vivaldia":
@@ -200,19 +198,27 @@ def label_national_school(row: dict) -> str | None:
 
 
 def label_sacred_function(row: dict) -> str | None:
-    title = row["title"].lower()
+    title = (row.get("title") or "").lower()
+    parent = (row.get("parent_work_id") or "").lower()
+    wid = (row.get("work_id") or "").lower()
+    txt = f"{title} {parent} {wid}"
+
     if "spiritus domini" in title:
         return "motet"
-    if "magnificat" in title:
+    if "ave verum" in txt or "ave, verum" in txt or "kv618" in parent or "aveverum" in wid or "verumm" in wid:
+        return "motet"
+    if "magnificat" in txt:
         return "magnificat"
-    if "stabat mater" in title:
+    if "stabat mater" in txt:
         return "stabat_mater"
-    if "requiem" in title:
+    if "requiem" in txt or "kv626" in parent or "dies-irae" in wid:
         return "requiem"
     if "passion" in title or "passio" in title:
         return "passion"
-    if "te deum" in title:
+    if "te deum" in txt:
         return "te_deum"
+    if "messiah" in txt or "hwv56" in parent:
+        return "oratorio"
     if "chorale" in title and "prelude" in title:
         return "chorale_prelude"
     if "chorale" in title:

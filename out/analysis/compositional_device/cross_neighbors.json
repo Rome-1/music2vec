@@ -24,7 +24,7 @@
     "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
     "b_label": "passacaglia",
     "b_title": "BWV 1004 Chaconne",
-    "cosine_distance": 0.03855907917022705
+    "cosine_distance": 0.03855925798416138
   },
   {
     "a": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
@@ -42,7 +42,7 @@
     "b": "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
     "b_label": "passacaglia",
     "b_title": "BWV 1004 Chaconne",
-    "cosine_distance": 0.05119127035140991
+    "cosine_distance": 0.051191091537475586
   },
   {
     "a": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",

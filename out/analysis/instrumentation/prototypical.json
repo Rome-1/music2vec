@@ -7,7 +7,7 @@
   "solo_keyboard_piano": {
     "work_id": "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
     "title": "Prelude",
-    "n_members": 42
+    "n_members": 45
   },
   "lute_guitar_solo": {
     "work_id": "bachjs-bwv1006a-bwv-1006a-5g-bwv-1006a-5g",
@@ -27,7 +27,7 @@
   "string_quartet": {
     "work_id": "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt3",
     "title": "O96 parts",
-    "n_members": 7
+    "n_members": 9
   },
   "full_orchestra": {
     "work_id": "vivaldia-o8-autumn-lys-autumn-score",

@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "a": "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
+    "a_label": "motet",
+    "a_title": "Spiritus Domini",
+    "b": "mozartwa-kv626-dies-irae-lys-score",
+    "b_label": "requiem",
+    "b_title": "Dies Irae",
+    "cosine_distance": 0.10617482662200928
+  },
+  {
+    "a": "mozartwa-aveverumm-aveverumm-aveverumm",
+    "a_label": "motet",
+    "a_title": "Ave, verum corpus",
+    "b": "mozartwa-kv626-dies-irae-lys-score",
+    "b_label": "requiem",
+    "b_title": "Dies Irae",
+    "cosine_distance": 0.11971181631088257
+  }
+]

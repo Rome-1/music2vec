@@ -9,12 +9,12 @@
       [
         "bachjs-bwv878-f9-f9",
         "fugue",
-        2.6504342555999756
+        2.65043306350708
       ],
       [
         "bachjs-bwv1003-bwv-1003-2-bwv-1003-2",
         "fugue",
-        1.479435682296753
+        1.4794355630874634
       ],
       [
         "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
@@ -24,22 +24,22 @@
       [
         "bachjs-bwv850-bwv850b-lys-bwv850b",
         "fugue",
-        1.1568505764007568
+        1.1568504571914673
       ],
       [
         "bachjs-bwv857-bwv857-fuga12-bwv857-fuga12",
         "fugue",
-        1.0378119945526123
+        1.0378124713897705
       ],
       [
         "bachjs-bwv1004-bwv-1004-5-bwv-1004-5",
         "passacaglia",
-        1.0332276821136475
+        1.0332273244857788
       ],
       [
         "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
         "fugue",
-        1.0163930654525757
+        1.0163928270339966
       ],
       [
         "bachjs-bwv869-bwv869b-lys-bwv869b",
@@ -54,7 +54,7 @@
       [
         "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
         "fugue",
-        0.999249279499054
+        0.9992493391036987
       ]
     ]
   },
@@ -68,7 +68,7 @@
       [
         "bachjs-bwv1004-bwv-1004-4-giga-bwv-1004-4-giga",
         "gigue",
-        1.1546927690505981
+        1.1546930074691772
       ],
       [
         "bachjs-bwv1004-bwv-1004-1-bwv-1004-1",
@@ -78,12 +78,12 @@
       [
         "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
         "bourree",
-        1.0373973846435547
+        1.0373979806900024
       ],
       [
         "bachjs-bwv1006-bwv-1006-7-bwv-1006-7",
         "gigue",
-        1.0277466773986816
+        1.0277467966079712
       ],
       [
         "bachjs-bwv1006-bwv-1006-3-bwv-1006-3",
@@ -93,204 +93,204 @@
       [
         "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
         "bourree",
-        1.0068540573120117
+        1.0068541765213013
       ],
       [
         "bachjs-bwv1012-bwv-1012-3-bwv-1012-3",
         "courante",
-        1.0054954290390015
+        1.0054951906204224
       ],
       [
         "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
         "minuet",
-        1.005019187927246
+        1.005018949508667
       ],
       [
         "bachjs-bwv1006-bwv-1006-5-bwv-1006-5",
         "minuet",
-        1.0045603513717651
+        1.0045604705810547
       ],
       [
         "bachjs-bwv1006a-bwv-1006a-6g-bwv-1006a-6g",
         "bourree",
-        1.0013803243637085
+        1.001380443572998
       ]
     ]
   },
   "instrumentation": {
-    "n_labeled": 166,
-    "n_classes": 7,
-    "knn_purity_k5": 0.7216867469879518,
-    "kmeans_ari": 0.2367611924687727,
-    "kmeans_nmi": 0.41710408379440844,
+    "n_labeled": 172,
+    "n_classes": 8,
+    "knn_purity_k5": 0.7174418604651163,
+    "kmeans_ari": 0.29175467775678043,
+    "kmeans_nmi": 0.4504920042686774,
     "top_outliers": [
+      [
+        "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
+        "unaccompanied_string",
+        6.757292747497559
+      ],
       [
         "bachjs-bwv1011-bwv1011-lys-bwv1011-viola-original",
         "unaccompanied_string",
-        7.706174373626709
+        6.750390529632568
       ],
       [
         "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
         "solo_keyboard_piano",
-        7.692809104919434
-      ],
-      [
-        "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
-        "unaccompanied_string",
-        7.35060977935791
+        6.740078449249268
       ],
       [
         "bachjs-bwv1008-bwv1008-lys-bwv1008-viola",
         "unaccompanied_string",
-        7.056610107421875
+        6.503051280975342
+      ],
+      [
+        "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt1",
+        "string_quartet",
+        5.562966823577881
       ],
       [
         "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
         "satb_a_cappella",
-        2.74096941947937
+        2.742774724960327
       ],
       [
         "chopinff-o10-chopin-op-10-09-wfi-chopin-op-10-09-wfi",
         "solo_keyboard_piano",
-        2.682062864303589
+        2.6902127265930176
       ],
       [
         "bachjs-bwv878-f9-f9",
         "solo_keyboard_harpsichord",
-        2.531989097595215
+        2.517043352127075
       ],
       [
         "chopinff-o28-chop-28-7-lys-chopin-prelude-op28-no7",
         "solo_keyboard_piano",
-        2.08398175239563
+        2.028977632522583
       ],
       [
         "chopinff-o28-chop-28-4-chop-28-4",
         "solo_keyboard_piano",
-        1.9741071462631226
-      ],
-      [
-        "chopinff-o28-chop-28-10-chop-28-10",
-        "solo_keyboard_piano",
-        1.9006403684616089
+        1.9748070240020752
       ]
     ]
   },
   "opus_cycle": {
-    "n_labeled": 154,
+    "n_labeled": 157,
     "n_classes": 8,
-    "knn_purity_k5": 0.6844155844155844,
-    "kmeans_ari": 0.35652549884370593,
-    "kmeans_nmi": 0.5530693583802622,
+    "knn_purity_k5": 0.6853503184713375,
+    "kmeans_ari": 0.3384525307782547,
+    "kmeans_nmi": 0.544404991028019,
     "top_outliers": [
       [
         "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
         "bach_cello_suites",
-        7.114945888519287
+        7.193382263183594
       ],
       [
         "bachjs-bwv1011-bwv1011-lys-bwv1011-viola-original",
         "bach_cello_suites",
-        7.110073566436768
+        7.188462257385254
       ],
       [
         "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
         "beethoven_32_sonatas",
-        7.097955226898193
+        7.176211357116699
       ],
       [
         "bachjs-bwv1008-bwv1008-lys-bwv1008-viola",
         "bach_cello_suites",
-        6.83677864074707
+        6.912200450897217
       ],
       [
         "chopinff-o10-chopin-op-10-09-wfi-chopin-op-10-09-wfi",
         "chopin_op10_etudes",
-        2.6974074840545654
+        2.7021594047546387
       ],
       [
         "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
         "bach_wtc_2",
-        2.6837685108184814
+        2.6852898597717285
       ],
       [
         "bachjs-bwv878-f9-f9",
         "bach_wtc_2",
-        2.3835675716400146
+        2.3752341270446777
       ],
       [
         "chopinff-o28-chop-28-7-lys-chopin-prelude-op28-no7",
         "chopin_op28_preludes",
-        2.213937520980835
+        2.1394917964935303
       ],
       [
         "chopinff-o28-chop-28-4-chop-28-4",
         "chopin_op28_preludes",
-        2.026085138320923
+        2.027122735977173
       ],
       [
-        "chopinff-o28-chop-28-10-chop-28-10",
+        "chopinff-o28-chop-28-24-chop-28-24",
         "chopin_op28_preludes",
-        1.8813425302505493
+        1.776021957397461
       ]
     ]
   },
   "national_school": {
-    "n_labeled": 171,
+    "n_labeled": 179,
     "n_classes": 4,
-    "knn_purity_k5": 0.8116959064327486,
-    "kmeans_ari": -0.04389482563410904,
-    "kmeans_nmi": 0.15083030987813248,
+    "knn_purity_k5": 0.8033519553072626,
+    "kmeans_ari": -0.04290645498060701,
+    "kmeans_nmi": 0.14676964007170556,
     "top_outliers": [
       [
         "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
         "german_contrapuntal",
-        7.525068283081055
+        7.112377643585205
       ],
       [
         "bachjs-bwv1011-bwv1011-lys-bwv1011-viola-original",
         "german_contrapuntal",
-        7.517524719238281
+        6.884134292602539
       ],
       [
         "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
         "german_contrapuntal",
-        7.505042552947998
+        6.872873783111572
       ],
       [
         "bachjs-bwv1008-bwv1008-lys-bwv1008-viola",
         "german_contrapuntal",
-        7.375814437866211
+        6.841497898101807
+      ],
+      [
+        "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt1",
+        "czech_nationalist",
+        5.255822658538818
       ],
       [
         "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
         "german_contrapuntal",
-        2.74096941947937
+        2.7435641288757324
       ],
       [
         "chopinff-o10-chopin-op-10-09-wfi-chopin-op-10-09-wfi",
-        "hungarian_folk_based",
-        2.6817033290863037
+        "polish_romantic",
+        2.7203543186187744
       ],
       [
         "bachjs-bwv878-f9-f9",
         "german_contrapuntal",
-        2.5322649478912354
-      ],
-      [
-        "chopinff-o28-chop-28-7-lys-chopin-prelude-op28-no7",
-        "hungarian_folk_based",
-        1.9956016540527344
+        2.5226433277130127
       ],
       [
         "chopinff-o28-chop-28-4-chop-28-4",
-        "hungarian_folk_based",
-        1.9741840362548828
+        "polish_romantic",
+        1.9681609869003296
       ],
       [
-        "chopinff-o28-chop-28-10-chop-28-10",
-        "hungarian_folk_based",
-        1.9003543853759766
+        "dvoraka-o96-parts-00-dvorakamericanquartet-voix3",
+        "czech_nationalist",
+        1.8841819763183594
       ]
     ]
   }

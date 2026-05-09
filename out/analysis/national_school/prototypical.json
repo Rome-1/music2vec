@@ -2,17 +2,17 @@
   "german_contrapuntal": {
     "work_id": "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
     "title": "Fuga 15 - BWV 860",
-    "n_members": 135
+    "n_members": 139
   },
-  "hungarian_folk_based": {
+  "polish_romantic": {
     "work_id": "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
     "title": "Prelude",
     "n_members": 26
   },
   "czech_nationalist": {
-    "work_id": "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt3",
+    "work_id": "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4",
     "title": "O96 parts",
-    "n_members": 8
+    "n_members": 12
   },
   "italian_operatic": {
     "work_id": "vivaldia-o8-autumn-lys-autumn-score",

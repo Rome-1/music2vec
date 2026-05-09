@@ -6,14 +6,14 @@
     "b": "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4",
     "b_label": "czech_nationalist",
     "b_title": "O96 parts",
-    "cosine_distance": 0.02471339702606201
+    "cosine_distance": 0.024713516235351562
   },
   {
     "a": "bachjs-bwv849-bwv849b-bwv849b",
     "a_label": "german_contrapuntal",
     "a_title": "Das Wohltemperierte Clavier I, Fuga IV",
     "b": "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
-    "b_label": "hungarian_folk_based",
+    "b_label": "polish_romantic",
     "b_title": "Prelude",
     "cosine_distance": 0.025377988815307617
   },
@@ -22,9 +22,9 @@
     "a_label": "german_contrapuntal",
     "a_title": "Das Wohltemperierte Clavier I, Praeludium IV",
     "b": "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
-    "b_label": "hungarian_folk_based",
+    "b_label": "polish_romantic",
     "b_title": "Prelude",
-    "cosine_distance": 0.02792835235595703
+    "cosine_distance": 0.027928292751312256
   },
   {
     "a": "bachjs-bwv846-wtk1-fugue1-wtk1-fugue1",
@@ -40,7 +40,7 @@
     "a_label": "german_contrapuntal",
     "a_title": "Sonata No. 8 \u201cPath\u00e9tique\u201d (3rd Movement: Rondo)",
     "b": "chopinff-o28-chop-28-1-chop-28-1",
-    "b_label": "hungarian_folk_based",
+    "b_label": "polish_romantic",
     "b_title": "Prelude: Op. 28, No. 1",
     "cosine_distance": 0.02910590171813965
   },
@@ -49,7 +49,7 @@
     "a_label": "german_contrapuntal",
     "a_title": "Das Wohltemperierte Clavier II, Praeludium VI",
     "b": "chopinff-o28-chop-28-1-chop-28-1",
-    "b_label": "hungarian_folk_based",
+    "b_label": "polish_romantic",
     "b_title": "Prelude: Op. 28, No. 1",
     "cosine_distance": 0.02951711416244507
   },
@@ -58,7 +58,7 @@
     "a_label": "german_contrapuntal",
     "a_title": "Das Wohltemperierte Clavier I, Praeludium XX",
     "b": "chopinff-o28-chop-28-1-chop-28-1",
-    "b_label": "hungarian_folk_based",
+    "b_label": "polish_romantic",
     "b_title": "Prelude: Op. 28, No. 1",
     "cosine_distance": 0.029545307159423828
   },
@@ -67,7 +67,7 @@
     "a_label": "german_contrapuntal",
     "a_title": "Sonata No. 8 \u201cPath\u00e9tique\u201d (3rd Movement: Rondo)",
     "b": "chopinff-o28-chop-28-18-chop-28-18",
-    "b_label": "hungarian_folk_based",
+    "b_label": "polish_romantic",
     "b_title": "Pr\u00e9lude 18",
     "cosine_distance": 0.029707133769989014
   }
