@@ -45,26 +45,25 @@ def label_compositional_device(row: dict) -> str | None:
 def label_dance_type(row: dict) -> str | None:
     title = row["title"].lower()
     wid = row["work_id"].lower()
-    txt = f"{title} {wid}"
+    parent = (row.get("parent_work_id") or "").lower()
+    txt = f"{title} {wid} {parent}"
 
     patterns = [
         ("allemande", r"\ballemand[ae]\b"),
-        ("courante",  r"\bcourante|corrente\b"),
+        ("courante",  r"\b(courante|corrente)\b"),
         ("sarabande", r"\bsaraband[ae]\b"),
-        ("gigue",     r"\bgigu?e\b|\bgigaa?\b|\bjig\b"),
+        ("gigue",     r"\b(gigu?e|gigaa?|jig)\b"),
         ("gavotte",   r"\bgavotte?\b"),
         ("bourree",   r"\bbour?r[eé]e\b"),
-        ("menuet",    r"\bmen[uu]et+o?\b|\bminuet\b"),
+        ("menuet",    r"\b(men[uu]et+o?|minuet)\b"),
         ("siciliana", r"\bsiciliana?o?\b"),
         ("tarantella", r"\btarantella\b"),
-        ("waltz",     r"\bwalzer|\bwaltz|\bvalse\b"),
+        ("waltz",     r"\b(walzer|waltz|valse)\b"),
         ("mazurka",   r"\bmazurk[ae]\b"),
-        ("polonaise", r"\bpolonaise|polonez\b"),
+        ("polonaise", r"\b(polonaise|polonez)\b"),
         ("habanera",  r"\bhabanera\b"),
-        ("march",     r"\bmarche?|marsch\b"),
+        ("march",     r"\b(marche?|marsch)\b"),
     ]
-    # Map "menuet" to "minuet"-equivalent label in our taxonomy: keep
-    # as separate label since taxonomies.py uses "minuet" — adjust:
     label_remap = {"menuet": "minuet"}
     for label, pat in patterns:
         if re.search(pat, txt):
@@ -74,7 +73,9 @@ def label_dance_type(row: dict) -> str | None:
 
 def label_instrumentation(row: dict) -> str | None:
     instr = (row.get("instrumentation_hint", "") or "").lower()
-    parent = row.get("parent_work_id", "")
+    parent = (row.get("parent_work_id") or "").lower()
+    title = (row.get("title") or "").lower()
+    wid = (row.get("work_id") or "").lower()
 
     # Mutopia's mutopiainstrument is usually authoritative.
     if "harpsichord" in instr and "piano" in instr:
@@ -85,6 +86,14 @@ def label_instrumentation(row: dict) -> str | None:
         return "solo_keyboard_piano"
     if "organ" in instr:
         return "solo_keyboard_organ"
+    if "guitar" in instr or "lute" in instr:
+        return "lute_guitar_solo"
+    if "string quartet" in instr or "quatuor à cordes" in instr:
+        return "string_quartet"
+    if any(k in instr for k in ("orchestra", "orchestre", "symphony")):
+        return "full_orchestra"
+    if "choir" in instr or "chorus" in instr or "satb" in instr:
+        return "satb_a_cappella"
     if "violin" in instr or "violine" in instr:
         return "unaccompanied_string"
     if "cello" in instr or "violoncello" in instr:
@@ -92,8 +101,8 @@ def label_instrumentation(row: dict) -> str | None:
     if "viola" in instr:
         return "unaccompanied_string"
 
-    # Fall back to parent-work BWV ranges for Bach
-    bwv = re.search(r"bwv(\d+)", parent or "")
+    # Fall back to BWV / opus / composer-specific heuristics
+    bwv = re.search(r"bwv(\d+)", parent)
     if bwv:
         n = int(bwv.group(1))
         if 846 <= n <= 893:        # WTC books I + II
@@ -102,12 +111,34 @@ def label_instrumentation(row: dict) -> str | None:
             return "unaccompanied_string"
         if 1007 <= n <= 1012:      # cello suites
             return "unaccompanied_string"
+
+    # Beethoven sonatas / Chopin works are piano unless said otherwise
+    if "beethovenlv" in parent and "sonate" in title.replace(" ", ""):
+        return "solo_keyboard_piano"
+    if "chopinff" in parent:
+        return "solo_keyboard_piano"
+    if "moonlight" in wid or "pathetique" in wid:
+        return "solo_keyboard_piano"
+    if "dvoraka" in parent and ("quartet" in title.lower()
+                                 or "americanquartet" in wid):
+        return "string_quartet"
+    if "vivaldia" in parent:
+        return "full_orchestra"  # Vivaldi concerti grossi / four seasons
+    if "mozartwa" in parent:
+        if "kv525" in parent or "nachtmusik" in title.lower():
+            return "string_quartet"
+        if "kv550" in parent or "kv551" in parent or "symphony" in title.lower():
+            return "full_orchestra"
+        if "requiem" in title.lower() or "kv626" in parent:
+            return "mass_with_orchestra"
+        if "averum" in wid or "kv618" in parent:
+            return "satb_a_cappella"
     return None
 
 
 def label_opus_cycle(row: dict) -> str | None:
-    parent = row.get("parent_work_id", "") or ""
-    title = row["title"].lower()
+    parent = (row.get("parent_work_id") or "").lower()
+    title = (row.get("title") or "").lower()
     bwv = re.search(r"bwv(\d+)", parent)
     if bwv:
         n = int(bwv.group(1))
@@ -127,14 +158,44 @@ def label_opus_cycle(row: dict) -> str | None:
         return "bach_goldberg"
     if "art of fugue" in title or "kunst der fuge" in title:
         return "bach_art_of_fugue"
+
+    # Chopin opus cycles
+    if "chopinff-o28" in parent:
+        return "chopin_op28_preludes"
+    if "chopinff-o10" in parent:
+        return "chopin_op10_etudes"
+    if "chopinff-o25" in parent:
+        return "chopin_op25_etudes"
+
+    # Beethoven 32 sonatas — anything labeled lvb-sonate-NNN
+    if "beethovenlv" in parent and (
+        "sonate" in title or "moonlight" in title or "pathetique" in title
+        or re.search(r"sonata", title)
+    ):
+        return "beethoven_32_sonatas"
     return None
 
 
 def label_national_school(row: dict) -> str | None:
     composer = (row.get("composer") or "").lower()
     parent = (row.get("parent_work_id") or "").lower()
+
     if composer in {"bachjs", "bachj", "bach"} or "bachjs" in parent:
         return "german_contrapuntal"
+    if "beethovenlv" in parent or composer == "beethovenlv":
+        return "german_contrapuntal"
+    if "mozartwa" in parent or composer == "mozartwa":
+        return "german_contrapuntal"  # Austrian; Viennese Classical
+    if "handelgf" in parent or composer == "handelgf":
+        return "german_contrapuntal"  # German-born; later naturalized British
+    if "chopinff" in parent or composer == "chopinff":
+        return "hungarian_folk_based"  # closest hull in current taxonomy;
+        # treat as "folk-tradition Romantic". (Polish, but no pan-Slavic
+        # category populated yet.)  TODO: add `polish_romantic` slot.
+    if "dvoraka" in parent or composer == "dvoraka":
+        return "czech_nationalist"
+    if "vivaldia" in parent or composer == "vivaldia":
+        return "italian_operatic"
     return None
 
 

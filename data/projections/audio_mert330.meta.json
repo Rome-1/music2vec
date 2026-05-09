@@ -1,9 +1,9 @@
 {
   "name": "audio_mert330",
-  "n_works": 105,
+  "n_works": 171,
   "embedding_dim": 1024,
   "pca_explained_variance_ratio": [
-    0.34795987606048584,
-    0.20015652477741241
+    0.5006248950958252,
+    0.20360122621059418
   ]
 }

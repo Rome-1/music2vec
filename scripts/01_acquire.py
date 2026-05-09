@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import multiprocessing as mp
 import re
 import shutil
 import subprocess
@@ -54,6 +55,49 @@ PILOT_PREFIXES = (
     "BachJS/BWV1005", "BachJS/BWV1006",
     "BachJS/BWV1007", "BachJS/BWV1008", "BachJS/BWV1009", "BachJS/BWV1010",
     "BachJS/BWV1011", "BachJS/BWV1012",
+)
+
+# Phase 2 expansion: non-Bach works targeting the taxonomy slots V1
+# couldn't populate. Each opus is chosen for what it contributes to a
+# specific taxonomy probe.
+#
+# Compositional device (fugue across timbre):
+#   Beethoven O106 (Hammerklavier finale fugue, piano)
+#   Beethoven O131 (late string quartet, fugal opening)
+#   Beethoven O133 (Grosse Fuge, string quartet)
+#   Mozart KV551 (Symphony 41 "Jupiter" — fugue finale, orchestra)
+#   Mozart KV626 (Requiem — Kyrie/Cum sanctis fugues, choir+orch)
+#   Handel HWV56 (Messiah — Hallelujah + Amen fugues, choir+orch)
+#
+# Sacred function:
+#   Mozart KV626 (requiem), AveverumM (motet)
+#   Handel HWV56 (oratorio)
+#   Vivaldi RV589/RV610 etc. — let in any Vivaldi sacred we find
+#
+# Dance type (across composers):
+#   Chopin O28 (24 Preludes), O10/O25 (Etudes)
+#   Beethoven O27 (Moonlight — incl. minuet), O28 (Pastoral)
+#
+# Instrumentation diversity (orchestra, string quartet, choir):
+#   Vivaldi O3 / O8 (L'estro armonico, Four Seasons — orchestra)
+#   Mozart KV525 (Eine Kleine — string ensemble)
+#   Mozart KV550 (Symphony 40 — orchestra)
+#
+# National school:
+#   Dvorak — Czech nationalist
+#   Chopin — pan-Slavic / Polish
+PILOT_V2_PREFIXES = (
+    "BeethovenLv/O27",  "BeethovenLv/O28", "BeethovenLv/O13",
+    "BeethovenLv/O106", "BeethovenLv/O111",
+    "BeethovenLv/O131", "BeethovenLv/O132", "BeethovenLv/O133",
+    "BeethovenLv/O135",
+    "MozartWA/KV525", "MozartWA/KV550", "MozartWA/KV551",
+    "MozartWA/KV622", "MozartWA/KV626", "MozartWA/AveverumM",
+    "ChopinFF/O28", "ChopinFF/O10", "ChopinFF/O25",
+    "ChopinFF/O33", "ChopinFF/O45",
+    "HandelGF/HWV56",
+    "VivaldiA/O3", "VivaldiA/O8",
+    "DvorakA",
 )
 
 
@@ -95,8 +139,14 @@ def year_from_date(date: str) -> str:
     return m.group(1) if m else ""
 
 
-def compile_to_midi(ly_path: Path, out_dir: Path, timeout: int = 90) -> Path | None:
-    """Compile a .ly file with lilypond, return path to generated .midi."""
+def compile_to_midi(ly_path: Path, out_dir: Path, timeout: int = 120) -> Path | None:
+    """Compile a .ly file with lilypond, return path to generated .midi.
+
+    Note: many Mutopia .ly files target old LilyPond syntax versions and
+    exit with code 1 ("\\version outdated") even when MIDI generation
+    succeeded. We therefore check for output files rather than gating
+    on exit code.
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
@@ -105,12 +155,11 @@ def compile_to_midi(ly_path: Path, out_dir: Path, timeout: int = 90) -> Path | N
                "-o", str(tmp_dir / ly_path.stem),
                str(ly_path)]
         try:
-            subprocess.run(cmd, check=True, capture_output=True,
+            subprocess.run(cmd, check=False, capture_output=True,
                            timeout=timeout)
-        except (subprocess.CalledProcessError, subprocess.TimeoutExpired,
-                FileNotFoundError) as e:
-            print(f"  ! lilypond fail {ly_path.name}: "
-                  f"{getattr(e, 'returncode', 'timeout')}", file=sys.stderr)
+        except (subprocess.TimeoutExpired, FileNotFoundError) as e:
+            print(f"  ! lilypond timeout/missing {ly_path.name}: "
+                  f"{type(e).__name__}", file=sys.stderr)
             return None
         midis = list(tmp_dir.glob("*.midi")) + list(tmp_dir.glob("*.mid"))
         if not midis:
@@ -120,6 +169,17 @@ def compile_to_midi(ly_path: Path, out_dir: Path, timeout: int = 90) -> Path | N
         dest = out_dir / f"{ly_path.stem}.mid"
         shutil.copy(midi, dest)
         return dest
+
+
+def _compile_worker(args: tuple[Path, str]) -> tuple[str, bool]:
+    """Pool worker: compile one .ly file and rename the MIDI to wid.mid."""
+    ly, wid = args
+    midi = compile_to_midi(ly, RAW_DIR)
+    if midi is None:
+        return (wid, False)
+    if midi.name != f"{wid}.mid":
+        shutil.move(midi, RAW_DIR / f"{wid}.mid")
+    return (wid, True)
 
 
 def discover_ly(filter_prefixes: tuple[str, ...] | None) -> list[Path]:
@@ -138,6 +198,11 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--pilot", action="store_true",
                     help="Pilot subset: Bach WTC + solo violin + cello suites")
+    ap.add_argument("--pilot-v2", action="store_true",
+                    help="Phase 2 expansion: pilot + Beethoven/Mozart/"
+                         "Chopin/Handel/Vivaldi/Dvorak targeted opuses")
+    ap.add_argument("--jobs", type=int, default=4,
+                    help="Parallel lilypond compile workers (default 4)")
     ap.add_argument("--limit", type=int, default=None,
                     help="Cap N pieces (smoke test)")
     ap.add_argument("--no-compile", action="store_true",
@@ -150,7 +215,12 @@ def main() -> int:
               f"its `ftp/` dir into here).", file=sys.stderr)
         return 1
 
-    prefixes = PILOT_PREFIXES if args.pilot else None
+    if args.pilot_v2:
+        prefixes = PILOT_PREFIXES + PILOT_V2_PREFIXES
+    elif args.pilot:
+        prefixes = PILOT_PREFIXES
+    else:
+        prefixes = None
     ly_files = discover_ly(prefixes)
     if args.limit:
         ly_files = ly_files[: args.limit]
@@ -169,34 +239,26 @@ def main() -> int:
     csv_w.writeheader()
     csv_f.flush()
 
+    # Build work tuples first; spawn lilypond in a Pool.
+    work_specs: list[tuple[Path, str, str, str, str, str]] = []
+    work_meta: list[tuple[str, dict]] = []  # (work_id, header dict)
     for ly in ly_files:
         rel = ly.relative_to(MUTOPIA_SRC)
         composer = rel.parts[0]
         opus_dir = rel.parts[1] if len(rel.parts) > 2 else ""
         piece_dir = rel.parts[-2]
         wid = slug(composer, opus_dir, piece_dir, ly.stem)
-
         try:
-            ly_text = ly.read_text(errors="replace")
+            hdr = parse_header(ly.read_text(errors="replace"))
         except OSError:
             failed += 1
             continue
-        hdr = parse_header(ly_text)
+        work_specs.append((ly, wid, composer, opus_dir, piece_dir,
+                            rel.as_posix()))
+        work_meta.append((wid, hdr))
 
-        midi_dest = RAW_DIR / f"{wid}.mid"
-        if not args.no_compile:
-            if midi_dest.exists():
-                skipped += 1
-            else:
-                got = compile_to_midi(ly, RAW_DIR)
-                if got is None:
-                    failed += 1
-                    continue
-                # Rename to canonical work_id
-                if got.name != f"{wid}.mid":
-                    shutil.move(got, midi_dest)
-                compiled += 1
-
+    def emit(wid: str, hdr: dict, composer: str, opus_dir: str,
+             piece_dir: str, rel: str) -> None:
         row = {
             "work_id": wid,
             "composer": hdr.get("mutopiacomposer") or hdr.get("composer", ""),
@@ -204,8 +266,7 @@ def main() -> int:
                       or f"{opus_dir} {piece_dir}").strip(),
             "year": year_from_date(hdr.get("date", "")),
             "source": "mutopia",
-            "source_url": ("https://www.mutopiaproject.org/ftp/"
-                           + rel.as_posix()),
+            "source_url": ("https://www.mutopiaproject.org/ftp/" + rel),
             "license": hdr.get("copyright", "Public Domain"),
             "movement_index": "",
             "parent_work_id": slug(composer, opus_dir),
@@ -216,9 +277,37 @@ def main() -> int:
         csv_w.writerow({k: row.get(k, "") for k in WORKS_HEADER})
         csv_f.flush()
 
-        if compiled and compiled % 10 == 0:
-            print(f"  ... {compiled} compiled, {skipped} skipped, "
-                  f"{failed} failed")
+    # Pre-pass: emit + skip already-compiled
+    pending: list[tuple[Path, str, str, str, str, str]] = []
+    hdr_by_wid = dict(work_meta)
+    for spec in work_specs:
+        ly, wid, composer, opus_dir, piece_dir, rel = spec
+        midi_dest = RAW_DIR / f"{wid}.mid"
+        if args.no_compile or midi_dest.exists():
+            if midi_dest.exists():
+                skipped += 1
+            emit(wid, hdr_by_wid[wid], composer, opus_dir, piece_dir, rel)
+        else:
+            pending.append(spec)
+
+    if pending:
+        print(f"[01] compiling {len(pending)} pieces with {args.jobs} workers")
+        with mp.Pool(processes=args.jobs) as pool:
+            tasks = [(ly, wid) for ly, wid, *_ in pending]
+            for done in pool.imap_unordered(_compile_worker, tasks,
+                                             chunksize=1):
+                wid, ok = done
+                spec = next(s for s in pending if s[1] == wid)
+                _, _, composer, opus_dir, piece_dir, rel = spec
+                if ok:
+                    compiled += 1
+                    emit(wid, hdr_by_wid[wid], composer, opus_dir,
+                         piece_dir, rel)
+                else:
+                    failed += 1
+                if (compiled + failed) % 25 == 0:
+                    print(f"  ... {compiled} compiled, {skipped} skipped, "
+                          f"{failed} failed")
 
     csv_f.close()
     print(f"[01] wrote {len(rows)} rows -> {WORKS_CSV}")

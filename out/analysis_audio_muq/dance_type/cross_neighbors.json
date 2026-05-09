@@ -3,10 +3,10 @@
     "a": "bachjs-bwv1006-bwv-1006-7-bwv-1006-7",
     "a_label": "gigue",
     "a_title": "BWV 1006 - Gigue",
-    "b": "bachjs-bwv1006-bwv-1006-3-bwv-1006-3",
-    "b_label": "gavotte",
-    "b_title": "BWV 1006 - Gavotte en Rondeau",
-    "cosine_distance": 0.00443953275680542
+    "b": "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
+    "b_label": "bourree",
+    "b_title": "BWV 1006 - Bourr\u00e9e",
+    "cosine_distance": 0.008334040641784668
   },
   {
     "a": "bachjs-bwv1006a-bwv-1006a-3-bwv-1006a-3",
@@ -15,16 +15,7 @@
     "b": "bachjs-bwv1006a-bwv-1006a-4-bwv-1006a-4",
     "b_label": "minuet",
     "b_title": "BWV 1006a - Menuet I",
-    "cosine_distance": 0.00488126277923584
-  },
-  {
-    "a": "bachjs-bwv1006-bwv-1006-7-bwv-1006-7",
-    "a_label": "gigue",
-    "a_title": "BWV 1006 - Gigue",
-    "b": "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
-    "b_label": "bourree",
-    "b_title": "BWV 1006 - Bourr\u00e9e",
-    "cosine_distance": 0.004944324493408203
+    "cosine_distance": 0.008760333061218262
   },
   {
     "a": "bachjs-bwv1006-bwv-1006-3-bwv-1006-3",
@@ -33,25 +24,16 @@
     "b": "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
     "b_label": "bourree",
     "b_title": "BWV 1006 - Bourr\u00e9e",
-    "cosine_distance": 0.005105376243591309
+    "cosine_distance": 0.009649276733398438
   },
   {
-    "a": "bachjs-bwv1006a-bwv-1006a-4g-bwv-1006a-4g",
-    "a_label": "minuet",
-    "a_title": "Suite E-Dur - BWV 1006a - Menuet I",
-    "b": "bachjs-bwv1006a-bwv-1006a-6g-bwv-1006a-6g",
-    "b_label": "bourree",
-    "b_title": "Suite E-Dur - BWV 1006a - Bourr\u00e9e",
-    "cosine_distance": 0.005160212516784668
-  },
-  {
-    "a": "bachjs-bwv1004-bwv-1004-1-bwv-1004-1",
-    "a_label": "allemande",
-    "a_title": "BWV 1004 Allemande",
-    "b": "bachjs-bwv1004-bwv-1004-4-giga-bwv-1004-4-giga",
-    "b_label": "gigue",
-    "b_title": "BWV 1004 Giga",
-    "cosine_distance": 0.0056324005126953125
+    "a": "bachjs-bwv1006a-bwv-1006a-3-bwv-1006a-3",
+    "a_label": "gavotte",
+    "a_title": "BWV 1006a - Gavotte en Rondeau",
+    "b": "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+    "b_label": "minuet",
+    "b_title": "BWV 1006a - Menuet II",
+    "cosine_distance": 0.009703755378723145
   },
   {
     "a": "bachjs-bwv1006a-bwv-1006a-3-bwv-1006a-3",
@@ -60,7 +42,7 @@
     "b": "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
     "b_label": "bourree",
     "b_title": "BWV 1006a - Bourr\u00e9e",
-    "cosine_distance": 0.005654454231262207
+    "cosine_distance": 0.010871827602386475
   },
   {
     "a": "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
@@ -69,6 +51,24 @@
     "b": "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
     "b_label": "bourree",
     "b_title": "BWV 1006a - Bourr\u00e9e",
-    "cosine_distance": 0.007081389427185059
+    "cosine_distance": 0.011427760124206543
+  },
+  {
+    "a": "bachjs-bwv1004-bwv-1004-1-bwv-1004-1",
+    "a_label": "allemande",
+    "a_title": "BWV 1004 Allemande",
+    "b": "bachjs-bwv1004-bwv-1004-4-giga-bwv-1004-4-giga",
+    "b_label": "gigue",
+    "b_title": "BWV 1004 Giga",
+    "cosine_distance": 0.01228630542755127
+  },
+  {
+    "a": "bachjs-bwv1006-bwv-1006-7-bwv-1006-7",
+    "a_label": "gigue",
+    "a_title": "BWV 1006 - Gigue",
+    "b": "bachjs-bwv1006-bwv-1006-3-bwv-1006-3",
+    "b_label": "gavotte",
+    "b_title": "BWV 1006 - Gavotte en Rondeau",
+    "cosine_distance": 0.012600362300872803
   }
 ]

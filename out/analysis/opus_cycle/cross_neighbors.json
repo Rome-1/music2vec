@@ -1,12 +1,57 @@
 [
   {
+    "a": "bachjs-bwv1011-bwv1011-lys-bwv1011-viola-original",
+    "a_label": "bach_cello_suites",
+    "a_title": "Suite 5 for Cello Solo",
+    "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
+    "b_label": "beethoven_32_sonatas",
+    "b_title": "Sonata No. 32 (1st Movement)",
+    "cosine_distance": 0.0005316734313964844
+  },
+  {
+    "a": "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
+    "a_label": "bach_cello_suites",
+    "a_title": "Suite 5 for Cello Solo",
+    "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
+    "b_label": "beethoven_32_sonatas",
+    "b_title": "Sonata No. 32 (1st Movement)",
+    "cosine_distance": 0.0028291940689086914
+  },
+  {
+    "a": "bachjs-bwv856-bwv856-praeludium11-bwv856-praeludium11",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Praeludium XI",
+    "b": "bachjs-bwv875-bwv875a-bwv875a",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Praeludium VI",
+    "cosine_distance": 0.007964015007019043
+  },
+  {
+    "a": "bachjs-bwv856-bwv856-fugue11-bwv856-fugue11",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga XI",
+    "b": "bachjs-bwv875-bwv875a-bwv875a",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Praeludium VI",
+    "cosine_distance": 0.010263025760650635
+  },
+  {
     "a": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
     "a_label": "bach_wtc_1",
     "a_title": "Das Wohltemperierte Clavier I, Fuga XX",
     "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
     "b_label": "bach_wtc_2",
     "b_title": "Das Wohltemperierte Clavier II, Fuga I",
-    "cosine_distance": 0.010482549667358398
+    "cosine_distance": 0.010482728481292725
+  },
+  {
+    "a": "bachjs-bwv855-bwv855b-bwv855b",
+    "a_label": "bach_wtc_1",
+    "a_title": "Das Wohltemperierte Clavier I, Fuga X",
+    "b": "bachjs-bwv875-bwv875a-bwv875a",
+    "b_label": "bach_wtc_2",
+    "b_title": "Das Wohltemperierte Clavier II, Praeludium VI",
+    "cosine_distance": 0.011781692504882812
   },
   {
     "a": "bachjs-bwv846-wtk1-fugue1-wtk1-fugue1",
@@ -24,51 +69,6 @@
     "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
     "b_label": "bach_wtc_2",
     "b_title": "Das Wohltemperierte Clavier II, Fuga I",
-    "cosine_distance": 0.013232827186584473
-  },
-  {
-    "a": "bachjs-bwv856-bwv856-fugue11-bwv856-fugue11",
-    "a_label": "bach_wtc_1",
-    "a_title": "Das Wohltemperierte Clavier I, Fuga XI",
-    "b": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
-    "b_label": "bach_wtc_2",
-    "b_title": "Das Wohltemperierte Clavier II, Fuga I",
-    "cosine_distance": 0.01639556884765625
-  },
-  {
-    "a": "bachjs-bwv861-bwv861-fuga16-bwv861-fuga16",
-    "a_label": "bach_wtc_1",
-    "a_title": "Das Wohltemperierte Clavier I, Fuga XVI",
-    "b": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
-    "b_label": "bach_wtc_2",
-    "b_title": "Das Wohltemperierte Clavier II, Fuga II",
-    "cosine_distance": 0.017341136932373047
-  },
-  {
-    "a": "bachjs-bwv862-bach-fugue17-bach-fugue17",
-    "a_label": "bach_wtc_1",
-    "a_title": "Das Wohltemperierte Clavier I, Fuga XVII",
-    "b": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
-    "b_label": "bach_wtc_2",
-    "b_title": "Das Wohltemperierte Clavier II, Fuga II",
-    "cosine_distance": 0.01749575138092041
-  },
-  {
-    "a": "bachjs-bwv1002-partita-1-lys-7-viola",
-    "a_label": "bach_solo_violin",
-    "a_title": "BWV1002 partita-1-lys",
-    "b": "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
-    "b_label": "bach_wtc_1",
-    "b_title": "Fuga 15 - BWV 860",
-    "cosine_distance": 0.018526792526245117
-  },
-  {
-    "a": "bachjs-bwv1002-partita-1-lys-7-viola",
-    "a_label": "bach_solo_violin",
-    "a_title": "BWV1002 partita-1-lys",
-    "b": "bachjs-bwv850-bwv850a-lys-bwv850a",
-    "b_label": "bach_wtc_1",
-    "b_title": "Das Wohltemperierte Clavier I, Praeludium V",
-    "cosine_distance": 0.018618404865264893
+    "cosine_distance": 0.013233065605163574
   }
 ]

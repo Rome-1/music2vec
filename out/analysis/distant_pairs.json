@@ -1,72 +1,72 @@
 [
   {
     "a": "bachjs-bwv1002-partita-1-lys-4-cello",
-    "b": "bachjs-bwv1006a-bwv-1006a-2g-bwv-1006a-2g",
+    "b": "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
     "a_title": "BWV1002 partita-1-lys",
-    "b_title": "Suite E-Dur - BWV 1006a - Loure",
-    "cosine_distance": 0.2502283453941345
+    "b_title": "Suite 5 for Cello Solo",
+    "cosine_distance": 0.7616632580757141
   },
   {
     "a": "bachjs-bwv1002-partita-1-lys-4-cello",
-    "b": "bachjs-bwv1006-bwv-1006-2-bwv-1006-2",
+    "b": "bachjs-bwv1011-bwv1011-lys-bwv1011-viola-original",
     "a_title": "BWV1002 partita-1-lys",
-    "b_title": "BWV 1006 - Loure",
-    "cosine_distance": 0.23517805337905884
+    "b_title": "Suite 5 for Cello Solo",
+    "cosine_distance": 0.7611169815063477
   },
   {
     "a": "bachjs-bwv1002-partita-1-lys-4-cello",
-    "b": "bachjs-bwv1006-bwv-1006-4-bwv-1006-4",
+    "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
     "a_title": "BWV1002 partita-1-lys",
-    "b_title": "BWV 1006 - Menuet I",
-    "cosine_distance": 0.2274627685546875
+    "b_title": "Sonata No. 32 (1st Movement)",
+    "cosine_distance": 0.7604180574417114
   },
   {
     "a": "bachjs-bwv1002-partita-1-lys-8-cello",
-    "b": "bachjs-bwv1006a-bwv-1006a-2g-bwv-1006a-2g",
+    "b": "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
     "a_title": "BWV1002 partita-1-lys",
-    "b_title": "Suite E-Dur - BWV 1006a - Loure",
-    "cosine_distance": 0.22605478763580322
-  },
-  {
-    "a": "bachjs-bwv1006a-bwv-1006a-3g-bwv-1006a-3g",
-    "b": "bachjs-bwv1009-cellosuite3-lys-cellosuite3",
-    "a_title": "Suite E-Dur - BWV 1006a - Gavotte en Rondeau",
-    "b_title": "BWV1009 cellosuite3-lys",
-    "cosine_distance": 0.2256961464881897
-  },
-  {
-    "a": "bachjs-bwv1002-partita-1-lys-6-cello",
-    "b": "bachjs-bwv1006a-bwv-1006a-2g-bwv-1006a-2g",
-    "a_title": "BWV1002 partita-1-lys",
-    "b_title": "Suite E-Dur - BWV 1006a - Loure",
-    "cosine_distance": 0.22271430492401123
-  },
-  {
-    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
-    "b": "bachjs-bwv1006a-bwv-1006a-4g-bwv-1006a-4g",
-    "a_title": "BWV1002 partita-1-lys",
-    "b_title": "Suite E-Dur - BWV 1006a - Menuet I",
-    "cosine_distance": 0.2223902940750122
-  },
-  {
-    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
-    "b": "bachjs-bwv1006-bwv-1006-6-bwv-1006-6",
-    "a_title": "BWV1002 partita-1-lys",
-    "b_title": "BWV 1006 - Bourr\u00e9e",
-    "cosine_distance": 0.22201216220855713
-  },
-  {
-    "a": "bachjs-bwv1002-partita-1-lys-4-cello",
-    "b": "bachjs-bwv1006a-bwv-1006a-6g-bwv-1006a-6g",
-    "a_title": "BWV1002 partita-1-lys",
-    "b_title": "Suite E-Dur - BWV 1006a - Bourr\u00e9e",
-    "cosine_distance": 0.22195518016815186
+    "b_title": "Suite 5 for Cello Solo",
+    "cosine_distance": 0.7531589865684509
   },
   {
     "a": "bachjs-bwv1002-partita-1-lys-8-cello",
-    "b": "bachjs-bwv1006-bwv-1006-2-bwv-1006-2",
+    "b": "bachjs-bwv1011-bwv1011-lys-bwv1011-viola-original",
     "a_title": "BWV1002 partita-1-lys",
-    "b_title": "BWV 1006 - Loure",
-    "cosine_distance": 0.22087204456329346
+    "b_title": "Suite 5 for Cello Solo",
+    "cosine_distance": 0.7507643699645996
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-8-cello",
+    "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "Sonata No. 32 (1st Movement)",
+    "cosine_distance": 0.7506285905838013
+  },
+  {
+    "a": "bachjs-bwv1011-bwv1011-lys-bwv1011-viola-original",
+    "b": "bachjs-bwv847-bwv847a-bwv847a",
+    "a_title": "Suite 5 for Cello Solo",
+    "b_title": "Das Wohltemperierte Clavier I, Praeludium II",
+    "cosine_distance": 0.7478123903274536
+  },
+  {
+    "a": "bachjs-bwv1002-partita-1-lys-2-cello",
+    "b": "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
+    "a_title": "BWV1002 partita-1-lys",
+    "b_title": "Suite 5 for Cello Solo",
+    "cosine_distance": 0.7467716932296753
+  },
+  {
+    "a": "bachjs-bwv847-bwv847a-bwv847a",
+    "b": "beethovenlv-o111-lvb-sonate-111-1-lys-lvb-sonate-111-1",
+    "a_title": "Das Wohltemperierte Clavier I, Praeludium II",
+    "b_title": "Sonata No. 32 (1st Movement)",
+    "cosine_distance": 0.7464371919631958
+  },
+  {
+    "a": "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-viola-transposed",
+    "b": "bachjs-bwv847-bwv847a-bwv847a",
+    "a_title": "Suite 5 for Cello Solo",
+    "b_title": "Das Wohltemperierte Clavier I, Praeludium II",
+    "cosine_distance": 0.7461974620819092
   }
 ]
