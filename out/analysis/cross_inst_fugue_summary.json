@@ -1,0 +1,41 @@
+{
+  "audio_mert95": {
+    "n_fugues_total": 20,
+    "fugue_counts_by_instrumentation": {
+      "solo_keyboard_harpsichord": 17,
+      "solo_keyboard_piano": 1,
+      "unaccompanied_string": 2
+    },
+    "n_non_keyboard_fugues": 2,
+    "n_pulled_cross_instrument": 2,
+    "mean_cross_inst_fugue_share_k5": 0.18000000000000002,
+    "chance_cross_inst_fugue_share_k5": 0.04131164704002922,
+    "lift_over_chance": 4.3571247552920775
+  },
+  "audio_mert330": {
+    "n_fugues_total": 20,
+    "fugue_counts_by_instrumentation": {
+      "solo_keyboard_harpsichord": 17,
+      "solo_keyboard_piano": 1,
+      "unaccompanied_string": 2
+    },
+    "n_non_keyboard_fugues": 2,
+    "n_pulled_cross_instrument": 0,
+    "mean_cross_inst_fugue_share_k5": 0.12000000000000002,
+    "chance_cross_inst_fugue_share_k5": 0.04131164704002922,
+    "lift_over_chance": 2.9047498368613853
+  },
+  "audio_muq": {
+    "n_fugues_total": 20,
+    "fugue_counts_by_instrumentation": {
+      "solo_keyboard_harpsichord": 17,
+      "solo_keyboard_piano": 1,
+      "unaccompanied_string": 2
+    },
+    "n_non_keyboard_fugues": 2,
+    "n_pulled_cross_instrument": 1,
+    "mean_cross_inst_fugue_share_k5": 0.26000000000000006,
+    "chance_cross_inst_fugue_share_k5": 0.04131164704002922,
+    "lift_over_chance": 6.293624646533003
+  }
+}

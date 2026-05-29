@@ -2,6 +2,9 @@
 
 A music-domain analogue of Figure 3 in [emoji2vec](https://arxiv.org/abs/1609.08359) (Eisner et al., 2016) — and an exploration of what a frozen music encoder's embedding space says about public-domain musical works.
 
+> ### → [Interactive 3D atlas](https://rome-1.github.io/music2vec/)
+> All 179 works in MERT/MuQ embedding space. Spin the cloud, click any sphere to hear a 30-second preview, swap between MERT-95M / MERT-330M / MuQ-large, filter by composer, era, instrumentation, opus cycle, or national school.
+
 ![hero](out/latent_works.png)
 
 emoji2vec's Figure 3 projects 1,661 emoji embeddings to 2D with t-SNE and renders each emoji glyph at its position. Clusters of similar emojis (smileys, animals, fruits, flags) emerge from a *language*-derived embedding space. Sister project [flag2vec](https://github.com/Rome-1/flag2vec) zoomed into one of those clusters — the flags — and asked whether a *visual* embedding (DINOv2) recovers the cultural / heraldic groupings a vexillologist would draw by hand. Answer: structurally distinctive categories (Nordic cross, British ensign) cluster cleanly; color-tradition categories (Pan-Slavic, Communist red) don't.
@@ -13,6 +16,40 @@ This project asks the parallel question of music.
 **Short answer (V3, n=179 across 6 composers):** yes for compositional grammar (across encoders), yes for instrumentation (dominates), yes for opus cycles as coherent blobs, yes for **national school**: 0.79–0.83 NN purity on 4 hand-labelled schools (German contrapuntal / Polish-Romantic / Czech-nationalist / Italian-operatic). Fugue robustness is the most confidence-inspiring finding: k=5 NN purity stays **0.92–0.93** across MERT-v1-95M, MERT-v1-330M, and MuQ-large. The biggest visual surprise is Chopin: his Polish-Romantic piano writing forms a hull with PHATE compactness 0.12 / UMAP 0.15, completely separate from the Bach-dominated rest of the figure.
 
 The Bach-only baseline numbers from V1 are preserved for reference further down. The V3 findings layer on top, not replace them.
+
+## Five findings to read first
+
+The full taxonomy and quantitative analyses are below, but if you want the headline picture in five figures:
+
+### 1. Fugues cluster across instrumentation — the project's strongest claim
+
+![fugue](out/categories/compositional_device/fugue.png)
+
+20 fugues across 3 instrumentation classes (17 harpsichord, 2 unaccompanied violin, 1 piano). **k=5 NN purity 0.91**, PHATE compactness **0.37** — the tightest hull in the figure. The violin fugues from BWV 1001 / 1003 / 1005 land in the *same outer hull* as the WTC keyboard fugues despite a complete timbre change. See the [cross-instrumentation fugue probe](#cross-instrumentation-fugue-probe-v4-2-closed) below for the one-number version.
+
+### 2. Chopin lives in his own corner
+
+![chopin polish romantic](out/categories/national_school/polish_romantic.png)
+
+n=26 Op. 28 Preludes + Op. 10 + Op. 25 Études. **PHATE compactness 0.12 / UMAP 0.15** — tighter than the fugue hull, tighter than any cycle, tighter than anything else in the figure. The encoder doesn't know "Chopin" — it knows that piano writing this rubato-rich, this voiced, this dynamically alive doesn't sound like anything else.
+
+### 3. WTC I and II are indistinguishable in latent space
+
+![wtc1](out/categories/opus_cycle/bach_wtc_1.png)
+
+Every one of the **eight closest cross-opus-cycle pairs is a WTC I fugue paired with a WTC II fugue.** WTC II Fuga I is the closest out-of-cycle neighbor for *five different* WTC I fugues. Form outweighs cycle. Across 22 years of Bach.
+
+### 4. Three encoders converge on the same structural findings
+
+![encoder PCA](out/encoder_compare_pca.png)
+
+Same 179 × 3 × 30 s windows through MERT-v1-95M (768-d), MERT-v1-330M (1024-d), MuQ-large (1024-d). Fugue NN purity 0.92–0.93 across all three; national school 0.80–0.84. MuQ partitions fugue/non-fugue as a *direction* in latent space where MERTs only neighborhood-cluster them. [Full encoder comparison →](#encoder-comparison)
+
+### 5. Instrumentation dominates, with one revealing exception
+
+![harpsichord](out/categories/instrumentation/solo_keyboard_harpsichord.png)
+
+k=5 NN purity 0.89 across 8 instrumentation classes. Audio encoders are brutally good at timbre. The wrinkle: BWV 1002's parallel **violin / viola / cello transcriptions** land as one tight triplet — same music, three timbres, encoder still pulls them together. The encoder isn't *only* tracking timbre; it tracks shared melodic / harmonic content when timbres are close enough.
 
 ## Method
 
@@ -152,6 +189,24 @@ Average-linkage hierarchical clustering on cosine distances, leaves colored by i
 - **BWV 1002 partita-as-cello transcriptions** — the cello transpositions of an originally-violin partita.
 - **BWV 871 WTC II Praeludium II** — the most acoustically unusual WTC prelude (mostly low-register, slow chordal).
 
+### Cross-instrumentation fugue probe (V4 #2, closed)
+
+![cross-inst fugue probe](out/analysis/cross_inst_fugue.png)
+
+The V1 README claimed *"fugues cluster across instrumentation"* on the strength of two unaccompanied-violin fugues (BWV 1001 #2, BWV 1003 #2) sitting in the same outer hull as the 17 WTC keyboard fugues + 1 piano fugue. That was a soft visual observation. This probe turns it into one number, per encoder.
+
+For each fugue, restrict its k=5 nearest-neighbor lookup to works of *other* instrumentation classes. What fraction of the resulting cross-instrument neighbors are themselves fugues? The corpus chance baseline for "neighbor is a fugue, given it's a different instrument" is 0.04. The observed cross-instrument NN purity across the 20 fugues:
+
+| Encoder | cross-instrument NN purity (k=5) | lift over chance |
+| --- | ---: | ---: |
+| MERT-v1-95M | 0.18 | **4.4×** |
+| MERT-v1-330M | 0.12 | 2.9× |
+| MuQ-large | **0.26** | **6.3×** |
+
+All three encoders see the fugue cluster *as a fugue cluster*, not as an instrument cluster. The lift is largest on MuQ — the same encoder that earlier picked up fugue / non-fugue as a *direction* in latent space rather than just a neighborhood.
+
+Caveat: only 2 of the 20 fugues are non-keyboard, both Bach solo-violin movements. V4 will widen this to non-Bach violin/cello/quartet fugues (Beethoven Op. 137 string-quartet fugue is already in the corpus but isn't labeled as `fugue` in the compositional_device taxonomy; the next pass should label it). Until then this is suggestive, not conclusive.
+
 ## Repository layout
 
 ```
@@ -177,7 +232,8 @@ music2vec/
 │   ├── 06_per_projection.py           # single-projection figures
 │   ├── 07_per_category.py             # per-taxonomy soft-hull figures
 │   ├── 09_clustering.py               # k-NN purity / k-means / LOF
-│   └── 10_extras.py                   # prototypical / distant / dendrogram
+│   ├── 10_extras.py                   # prototypical / distant / dendrogram
+│   └── 11_cross_inst_fugue.py         # cross-instrumentation fugue probe (V4 #2)
 └── out/                               # rendered figures + JSON metrics
 ```
 
@@ -205,6 +261,7 @@ PYTHONPATH=. python3 scripts/06_per_projection.py
 PYTHONPATH=. python3 scripts/07_per_category.py
 PYTHONPATH=. python3 scripts/09_clustering.py
 PYTHONPATH=. python3 scripts/10_extras.py
+PYTHONPATH=. python3 scripts/11_cross_inst_fugue.py
 ```
 
 ## Encoder comparison
@@ -258,7 +315,7 @@ Modal cost so far: **~$0.65** across three encoder×corpus passes (V1.5 + V2 + V
 ## V4 roadmap
 
 1. **Symbolic comparison via MusicBERT.** Add `microsoft/musicbert` on raw MIDI tokens — the audio-vs-symbolic side-by-side is the strongest single artifact this project can produce. Especially interesting now: does symbolic *also* recover the Chopin cluster, or is it specific to audio's dynamics/voicing channel?
-2. **Cross-composer fugue probe.** Quantify whether the Beethoven Op. 137 + Bach 1011 violin fugues sit nearer to WTC fugues than to non-fugue works in their *own* instrumentation. One number, one figure, closes the V1 caveat directly.
+2. ~~**Cross-composer fugue probe.**~~ *Closed in V3.5 — see [`out/analysis/cross_inst_fugue.png`](out/analysis/cross_inst_fugue.png) and the [section above](#cross-instrumentation-fugue-probe-v4-2-closed). 2.9–6.3× cross-instrument fugue NN purity lift over chance; MuQ strongest at 6.3×. Now widening to non-Bach violin/cello/quartet fugues.*
 3. **Score thumbnails.** Render each work's first system as a small PNG and use it as the figure mark, the way flag2vec uses the flag itself. Currently the marks are circles.
 4. **Rebalance the corpus.** Cap Bach at ~80 works; expand non-Bach to ~500 works. Add Schubert, Debussy, Pärt, Palestrina, Scarlatti, Couperin, Mendelssohn, Bartók.
 5. **Better hulls.** Era as a background gradient under the categorical hulls (currently just text in this README).

@@ -1,0 +1,274 @@
+{
+  "encoder": "audio_muq",
+  "n_fugues_total": 20,
+  "fugue_counts_by_instrumentation": {
+    "solo_keyboard_harpsichord": 17,
+    "solo_keyboard_piano": 1,
+    "unaccompanied_string": 2
+  },
+  "per_non_keyboard_fugue": [
+    {
+      "work_id": "bachjs-bwv1003-bwv-1003-2-bwv-1003-2",
+      "instrumentation": "unaccompanied_string",
+      "d_to_keyboard_fugues": 0.23889896273612976,
+      "d_to_own_nonfugues": 0.22570882737636566,
+      "pulled_cross_instrument": false
+    },
+    {
+      "work_id": "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+      "instrumentation": "unaccompanied_string",
+      "d_to_keyboard_fugues": 0.16137062013149261,
+      "d_to_own_nonfugues": 0.2158960998058319,
+      "pulled_cross_instrument": true
+    }
+  ],
+  "n_pulled_cross_instrument": 1,
+  "n_non_keyboard_fugues": 2,
+  "cross_instrumentation_nn_purity_k5": {
+    "per_fugue": [
+      {
+        "work_id": "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+        "instrumentation": "unaccompanied_string",
+        "cross_inst_fugue_share_k5": 0.8,
+        "cross_inst_neighbors": [
+          "bachjs-bwv869-bwv869b-lys-bwv869b",
+          "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv850-bwv850a-lys-bwv850a",
+          "bachjs-bwv862-bach-fugue17-bach-fugue17"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv1003-bwv-1003-2-bwv-1003-2",
+        "instrumentation": "unaccompanied_string",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "mozartwa-kv622-mozartk622-lys-midi-1",
+          "dvoraka-o4-dvorak-o4-lys-violin",
+          "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
+          "mozartwa-kv622-mozartk622-lys-midi-3",
+          "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv846-wtk1-fugue1-wtk1-fugue1",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1002-partita-1-lys-7-violin",
+          "bachjs-bwv1002-partita-1-lys-7-cello",
+          "bachjs-bwv1002-partita-1-lys-3-cello"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv847-fuga2-fuga2",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1006a-bwv-1006a-7-bwv-1006a-7",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "bachjs-bwv1002-partita-1-lys-2-cello"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv848-bwv848b-bwv848b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "beethovenlv-o13-pathetique-3-pathetique-3",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-2-cello",
+          "bachjs-bwv1002-partita-1-lys-3-cello"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv849-bwv849b-bwv849b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1002-partita-1-lys-7-cello",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1002-partita-1-lys-5-viola",
+          "beethovenlv-o13-pathetique-2-guitar-duo-pathetique-2-guitar-duo"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv850-bwv850b-lys-bwv850b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1006a-bwv-1006a-7-bwv-1006a-7",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "bachjs-bwv1002-partita-1-lys-7-violin",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv851-bwv851-fugue06-bwv851-fugue06",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "bachjs-bwv1002-partita-1-lys-8-cello",
+          "bachjs-bwv1002-partita-1-lys-2-cello"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv853-bwv853b-bwv853b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1002-partita-1-lys-7-violin",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1001-bwv-1001-3-bwv-1001-3",
+          "bachjs-bwv1002-partita-1-lys-7-cello"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv855-bwv855b-bwv855b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "bachjs-bwv1002-partita-1-lys-8-viola",
+          "bachjs-bwv1002-partita-1-lys-4-cello",
+          "bachjs-bwv1002-partita-1-lys-8-cello",
+          "bachjs-bwv1002-partita-1-lys-2-cello"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv856-bwv856-fugue11-bwv856-fugue11",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "beethovenlv-o13-pathetique-3-pathetique-3",
+          "bachjs-bwv1002-partita-1-lys-8-viola",
+          "bachjs-bwv1002-partita-1-lys-3-viola"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv857-bwv857-fuga12-bwv857-fuga12",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1006a-bwv-1006a-7-bwv-1006a-7",
+          "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+          "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+        "instrumentation": "solo_keyboard_piano",
+        "cross_inst_fugue_share_k5": 1.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv846-wtk1-fugue1-wtk1-fugue1",
+          "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
+          "bachjs-bwv869-bwv869b-lys-bwv869b",
+          "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+          "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv861-bwv861-fuga16-bwv861-fuga16",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1002-partita-1-lys-7-cello",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-violin",
+          "bachjs-bwv1001-bwv-1001-3-bwv-1001-3"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv862-bach-fugue17-bach-fugue17",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.4,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-3-cello",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+          "bachjs-bwv1001-bwv-1001-3-bwv-1001-3"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1002-partita-1-lys-2-cello",
+          "bachjs-bwv1002-partita-1-lys-8-cello",
+          "bachjs-bwv1002-partita-1-lys-7-violin"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv869-bwv869b-lys-bwv869b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.4,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1002-partita-1-lys-7-violin",
+          "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+          "bachjs-bwv1002-partita-1-lys-3-viola"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-3-cello",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1002-partita-1-lys-6-cello",
+          "bachjs-bwv1004-bwv-1004-1-bwv-1004-1"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.4,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1001-bwv-1001-3-bwv-1001-3",
+          "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+          "bachjs-bwv1002-partita-1-lys-7-violin"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv878-f9-f9",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
+          "mozartwa-kv626-dies-irae-lys-score",
+          "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+          "bachjs-bwv1006a-bwv-1006a-4-bwv-1006a-4",
+          "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6"
+        ]
+      }
+    ],
+    "mean_cross_inst_fugue_share_k5": 0.26000000000000006,
+    "chance_cross_inst_fugue_share_k5": 0.04131164704002922,
+    "lift_over_chance": 6.293624646533003
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "encoder": "audio_mert330",
+  "n_fugues_total": 20,
+  "fugue_counts_by_instrumentation": {
+    "solo_keyboard_harpsichord": 17,
+    "solo_keyboard_piano": 1,
+    "unaccompanied_string": 2
+  },
+  "per_non_keyboard_fugue": [
+    {
+      "work_id": "bachjs-bwv1003-bwv-1003-2-bwv-1003-2",
+      "instrumentation": "unaccompanied_string",
+      "d_to_keyboard_fugues": 0.09845370799303055,
+      "d_to_own_nonfugues": 0.09509848058223724,
+      "pulled_cross_instrument": false
+    },
+    {
+      "work_id": "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+      "instrumentation": "unaccompanied_string",
+      "d_to_keyboard_fugues": 0.08304896950721741,
+      "d_to_own_nonfugues": 0.07715705782175064,
+      "pulled_cross_instrument": false
+    }
+  ],
+  "n_pulled_cross_instrument": 0,
+  "n_non_keyboard_fugues": 2,
+  "cross_instrumentation_nn_purity_k5": {
+    "per_fugue": [
+      {
+        "work_id": "bachjs-bwv1001-bwv-1001-2-bwv-1001-2",
+        "instrumentation": "unaccompanied_string",
+        "cross_inst_fugue_share_k5": 0.4,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1006a-bwv-1006a-3g-bwv-1006a-3g",
+          "bachjs-bwv869-bwv869b-lys-bwv869b",
+          "dvoraka-o4-dvorak-o4-lys-violin",
+          "bachjs-bwv850-bwv850a-lys-bwv850a",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv1003-bwv-1003-2-bwv-1003-2",
+        "instrumentation": "unaccompanied_string",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "mozartwa-kv622-mozartk622-lys-midi-1",
+          "dvoraka-o4-dvorak-o4-lys-violin",
+          "mozartwa-kv525-parts-mozartwa-kv525-midi",
+          "vivaldia-o8-autumn-lys-autumn-score",
+          "vivaldia-o8-summer-lys-summer-score"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv846-wtk1-fugue1-wtk1-fugue1",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "chopinff-o28-chop-28-1-chop-28-1",
+          "chopinff-o28-chop-28-5-chop-28-5",
+          "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv847-fuga2-fuga2",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1006a-bwv-1006a-7-bwv-1006a-7",
+          "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+          "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
+          "bachjs-bwv1006a-bwv-1006a-4-bwv-1006a-4",
+          "bachjs-bwv1006a-bwv-1006a-3-bwv-1006a-3"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv848-bwv848b-bwv848b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o28-chop-28-8-chop-28-8",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "beethovenlv-o13-pathetique-3-pathetique-3",
+          "chopinff-o28-chop-28-5-chop-28-5"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv849-bwv849b-bwv849b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "chopinff-o28-chop-28-21-chop-28-21",
+          "beethovenlv-o27-moonlight-lys-moonlight1-a4",
+          "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4",
+          "dvoraka-o96-dvorak-o96-lys-dvorak-o96"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv850-bwv850b-lys-bwv850b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1006a-bwv-1006a-7-bwv-1006a-7",
+          "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+          "bachjs-bwv1006a-bwv-1006a-4-bwv-1006a-4",
+          "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
+          "bachjs-bwv1006a-bwv-1006a-2-bwv-1006a-2"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv851-bwv851-fugue06-bwv851-fugue06",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o28-chop-28-5-chop-28-5",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv853-bwv853b-bwv853b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "beethovenlv-o27-moonlight-lys-moonlight1-a4"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv855-bwv855b-bwv855b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o28-chop-28-8-chop-28-8",
+          "chopinff-o28-chop-28-5-chop-28-5",
+          "chopinff-o28-chop-28-1-chop-28-1",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv856-bwv856-fugue11-bwv856-fugue11",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o28-chop-28-1-chop-28-1",
+          "chopinff-o28-chop-28-5-chop-28-5",
+          "beethovenlv-o13-pathetique-3-pathetique-3",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv857-bwv857-fuga12-bwv857-fuga12",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv1006a-bwv-1006a-7-bwv-1006a-7",
+          "bachjs-bwv1006a-bwv-1006a-5-bwv-1006a-5",
+          "bachjs-bwv1006a-bwv-1006a-6-bwv-1006a-6",
+          "bachjs-bwv1006a-bwv-1006a-4-bwv-1006a-4",
+          "bachjs-bwv1006a-bwv-1006a-2-bwv-1006a-2"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+        "instrumentation": "solo_keyboard_piano",
+        "cross_inst_fugue_share_k5": 0.6,
+        "cross_inst_neighbors": [
+          "bachjs-bwv869-bwv869b-lys-bwv869b",
+          "bachjs-bwv865-bwv865-praeludium20-bwv865-praeludium20",
+          "bachjs-bwv850-bwv850a-lys-bwv850a",
+          "bachjs-bwv853-bwv853b-bwv853b",
+          "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv861-bwv861-fuga16-bwv861-fuga16",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "beethovenlv-o13-pathetique-3-pathetique-3",
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "dvoraka-o96-dvorak-o96-lys-dvorak-o96"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv862-bach-fugue17-bach-fugue17",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "beethovenlv-o13-pathetique-3-pathetique-3",
+          "beethovenlv-o27-moonlight-lys-moonlight1-a4"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv865-bwv865-fuga20-bwv865-fuga20",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o28-chop-28-1-chop-28-1",
+          "chopinff-o28-chop-28-5-chop-28-5",
+          "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv869-bwv869b-lys-bwv869b",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv1002-partita-1-lys-7-viola",
+          "bachjs-bwv1001-bwv-1001-1-bwv-1001-1",
+          "bachjs-bwv1001-bwv-1001-3-bwv-1001-3",
+          "bachjs-bwv1002-partita-1-lys-7-violin"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv870-wtk2fuga1-wtk2fuga1",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45",
+          "chopinff-o28-chop-28-1-chop-28-1",
+          "dvoraka-o96-parts-00-dvorakamericanquartet-conducteur-mvt4",
+          "beethovenlv-o13-pathetique-3-pathetique-3"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv871-wtk2-fugue2-wtk2-fugue2",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.2,
+        "cross_inst_neighbors": [
+          "bachjs-bwv860-bwv860-fuga15-bwv860-fuga15",
+          "bachjs-bwv860-bwv860-praeludium15-bwv860-praeludium15",
+          "chopinff-o28-chop-28-1-chop-28-1",
+          "beethovenlv-o13-pathetique-3-pathetique-3",
+          "chopinff-o45-chopin-prelude-op45-chopin-prelude-op45"
+        ]
+      },
+      {
+        "work_id": "bachjs-bwv878-f9-f9",
+        "instrumentation": "solo_keyboard_harpsichord",
+        "cross_inst_fugue_share_k5": 0.0,
+        "cross_inst_neighbors": [
+          "bachjs-bwv878-spiritus-domini-bach-spiritus-domini-bach",
+          "bachjs-bwv1011-bwv1011-lys-bwv1011",
+          "bachjs-bwv1011-bwv1011-transposed-lys-bwv1011-transposed",
+          "vivaldia-o8-summer-lys-summer-score",
+          "bachjs-bwv1012-bwv-1012-2-bwv-1012-2"
+        ]
+      }
+    ],
+    "mean_cross_inst_fugue_share_k5": 0.12000000000000002,
+    "chance_cross_inst_fugue_share_k5": 0.04131164704002922,
+    "lift_over_chance": 2.9047498368613853
+  }
+}
