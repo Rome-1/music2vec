@@ -89,42 +89,70 @@ def render_one(args: tuple[str, str, bool, int]) -> tuple[str, bool, str]:
 
     with tempfile.TemporaryDirectory(prefix=f"m2v-thumb-{work_id}-") as td:
         td_path = Path(td)
-        wrapped = td_path / "in.ly"
-        # Read with errors=replace because some .ly have stray non-utf8 bytes.
-        src = ly_src.read_text(encoding="utf-8", errors="replace")
-        wrapped.write_text(src + HEADER_OVERRIDE, encoding="utf-8")
 
         # Many .ly files do `\include "shared.ly"` or `\include "../foo.ly"`.
         # The originals resolve those against the source directory; we tell
         # lilypond to look there via -I.
         ly_dir = ly_src.parent
-        try:
-            proc = subprocess.run(
-                [
-                    "lilypond",
-                    f"-I{ly_dir}",
-                    f"-I{ly_dir.parent}",
-                    "-dpreview",
-                    "-dinclude-book-title-preview=#f",
-                    "-dlog-level=NONE",
-                    "--png",
-                    "-dresolution=200",
-                    "in.ly",
-                ],
-                cwd=td_path,
-                capture_output=True,
-                text=True,
-                timeout=300,
-            )
-        except subprocess.TimeoutExpired:
-            return work_id, False, "lilypond timeout >300s"
-        except Exception as e:
-            return work_id, False, f"lilypond exception: {e}"
-        preview = td_path / "in.preview.png"
-        if proc.returncode != 0 or not preview.exists():
-            err = (proc.stderr or proc.stdout or "").strip().splitlines()
-            return work_id, False, f"lilypond failed: {err[-1] if err else 'unknown'}"
+        include_args = [f"-I{ly_dir}", f"-I{ly_dir.parent}"]
 
+        def write_wrapped(source_text: str) -> Path:
+            wrapped = td_path / "in.ly"
+            wrapped.write_text(source_text + HEADER_OVERRIDE, encoding="utf-8")
+            return wrapped
+
+        def attempt(source_text: str) -> tuple[bool, str]:
+            write_wrapped(source_text)
+            try:
+                proc = subprocess.run(
+                    [
+                        "lilypond", *include_args,
+                        "-dpreview",
+                        "-dinclude-book-title-preview=#f",
+                        "-dlog-level=NONE",
+                        "--png",
+                        "-dresolution=200",
+                        "in.ly",
+                    ],
+                    cwd=td_path,
+                    capture_output=True,
+                    text=True,
+                    timeout=300,
+                )
+            except subprocess.TimeoutExpired:
+                return False, "lilypond timeout >300s"
+            except Exception as e:
+                return False, f"lilypond exception: {e}"
+            if proc.returncode != 0 or not (td_path / "in.preview.png").exists():
+                err = (proc.stderr or proc.stdout or "").strip().splitlines()
+                return False, f"lilypond failed: {err[-1] if err else 'unknown'}"
+            return True, "ok"
+
+        # Read with errors=replace because some .ly have stray non-utf8 bytes.
+        src = ly_src.read_text(encoding="utf-8", errors="replace")
+        ok, msg = attempt(src)
+        if not ok:
+            # Retry after convert-ly. The older Mutopia uploads (LilyPond 2.10-
+            # 2.14) often fail under 2.24; convert-ly upgrades syntax in place.
+            try:
+                upgraded = subprocess.run(
+                    ["convert-ly", "--from=2.0.0", "-"],
+                    input=src,
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
+                )
+                if upgraded.returncode == 0 and upgraded.stdout.strip():
+                    ok, msg = attempt(upgraded.stdout)
+                    if ok:
+                        msg = "ok (after convert-ly)"
+            except Exception:
+                pass
+
+        if not ok:
+            return work_id, False, msg
+
+        preview = td_path / "in.preview.png"
         # Crop to inked bounding box, then downscale to fixed height.
         img = Image.open(preview).convert("RGBA")
         # Make transparent background so the bbox detection is clean.
