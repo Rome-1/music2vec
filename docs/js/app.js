@@ -468,10 +468,11 @@ function animateCamera(camTo, targetTo, duration){
 // ─── Player ───────────────────────────────────────────────────────────────
 function wirePlayer(){
   playBtn.addEventListener("click", () => {
-    if (audioEl.src && !audioEl.paused){
+    if (!audioEl.src) return;
+    if (audioEl.paused) {
+      tryPlay();
+    } else {
       audioEl.pause();
-    } else if (audioEl.src){
-      audioEl.play().catch(()=>{});
     }
   });
   audioEl.addEventListener("play",  () => setPlayIcon(true));
@@ -479,6 +480,13 @@ function wirePlayer(){
   audioEl.addEventListener("ended", () => setPlayIcon(false));
   audioEl.addEventListener("loadedmetadata", () => {
     timeTot.textContent = fmtTime(audioEl.duration);
+  });
+  // Surface load errors so a broken file doesn't fail silently.
+  audioEl.addEventListener("error", () => {
+    playBtn.dataset.state = "";
+    setPlayIcon(false);
+    const code = audioEl.error?.code;
+    console.warn("audio element error", { code, src: audioEl.currentSrc });
   });
 
   // Click-to-seek on the bar.
@@ -490,17 +498,36 @@ function wirePlayer(){
   });
 }
 
-function loadAndPlay(w){
+// Attempt audio.play() and reflect the outcome in the play button state.
+// Returns the promise so callers can chain if needed.
+function tryPlay(){
   playBtn.dataset.state = "loading";
-  audioEl.src = w.audio;
-  audioEl.currentTime = 0;
-  audioEl.play().then(() => {
+  const p = audioEl.play();
+  if (!p || typeof p.then !== "function") {
+    // Older browsers: play() is sync.
+    playBtn.dataset.state = "playing";
+    return Promise.resolve();
+  }
+  return p.then(() => {
     playBtn.dataset.state = "playing";
   }).catch((e) => {
-    // Autoplay may be blocked until user interacts. The play button still works.
+    // Autoplay blocked, network error, or codec issue. Leave the button in
+    // the default "▶ click to play" state so the user has a clear next step.
     playBtn.dataset.state = "";
-    console.warn("autoplay blocked, click play", e);
+    setPlayIcon(false);
+    console.warn("audio play() rejected:", e?.name, e?.message);
   });
+}
+
+function loadAndPlay(w){
+  // Pause any in-flight playback before swapping src; iOS Safari and older
+  // Edge can leave the element in a half-loaded state if src changes mid-play.
+  if (!audioEl.paused) audioEl.pause();
+  audioEl.src = w.audio;
+  // With preload="metadata" the new src auto-loads, but call load() explicitly
+  // to cancel any pending fetch from the previous src and avoid a stale race.
+  audioEl.load();
+  tryPlay();
 }
 
 function setPlayIcon(playing){
