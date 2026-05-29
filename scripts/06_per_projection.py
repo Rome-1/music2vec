@@ -66,10 +66,15 @@ def main() -> int:
         xs = sub_df[xc].values
         ys = sub_df[yc].values
         if use_thumbs:
+            # PCA concentrates 38% of variance in two dims and packs the
+            # Bach harpsichord cluster into a tiny region — same-sized
+            # thumbs that work in t-SNE/UMAP/PHATE turn that corner into
+            # a black smudge. Halve the thumb size for PCA.
+            panel_px = thumb_px if label != "PCA" else max(20, thumb_px // 2)
             ax.scatter(xs, ys, s=8, color=SUBTLE, alpha=0.35,
                        edgecolor="none", zorder=1)
             for i, work_id in enumerate(sub_df["work_id"].values):
-                thumb = load_thumb(work_id, thumb_px)
+                thumb = load_thumb(work_id, panel_px, max_aspect=1.4)
                 if thumb.shape[0] <= 1:
                     continue
                 oi = OffsetImage(thumb, zoom=1.0, interpolation="lanczos")
