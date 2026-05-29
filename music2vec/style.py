@@ -65,12 +65,18 @@ def configure_typography() -> None:
 
 def load_thumb(work_id: str, height_px: int, border_color: str | None = None,
                border_px: int = 3, faded: bool = False,
-               grayscale: bool = False) -> np.ndarray:
+               grayscale: bool = False, max_aspect: float = 2.2) -> np.ndarray:
     """Load a per-work thumbnail (rendered score first-system PNG).
 
     Mirrors flag2vec's load_thumb. Falls back to a 1×1 transparent pixel
     if the thumbnail is missing — embed pipelines may run before
     thumbnails are rendered.
+
+    The rendered first system is typically very wide (one full line of
+    music). For scatter-plot marks we crop the *left edge* to a maximum
+    aspect ratio of `max_aspect`:1 — keeping just the opening measure or
+    two so the marker is recognizably-musical without dominating the plot.
+    Pass max_aspect=None to preserve the full first system.
     """
     path = THUMB_DIR / f"{work_id}.png"
     if not path.exists():
@@ -79,6 +85,12 @@ def load_thumb(work_id: str, height_px: int, border_color: str | None = None,
     bbox = img.getbbox()
     if bbox is not None:
         img = img.crop(bbox)
+    # Truncate to leftmost portion before downscaling, so we keep the
+    # opening of the piece (the figure mark) rather than averaging the
+    # whole line down to a smudge.
+    if max_aspect is not None and img.width > img.height * max_aspect:
+        crop_w = max(1, int(round(img.height * max_aspect)))
+        img = img.crop((0, 0, crop_w, img.height))
     scale = height_px / img.height
     new_w = max(1, int(round(img.width * scale)))
     new_h = max(1, int(round(img.height * scale)))

@@ -17,6 +17,8 @@ This project asks the parallel question of music.
 
 The Bach-only baseline numbers from V1 are preserved for reference further down. The V3 findings layer on top, not replace them.
 
+V3.5 update: every figure mark in the per-category and per-projection plots is now the **first measure or two of the work's score**, rendered via LilyPond from the original Mutopia source. flag2vec uses the flag as the marker; music2vec now uses the score. 138 of 179 works have rendered thumbnails; the remaining 41 (mostly older Mutopia uploads that fail to compile under LilyPond 2.24) fall back to dots.
+
 ## Five findings to read first
 
 The full taxonomy and quantitative analyses are below, but if you want the headline picture in five figures:
@@ -233,7 +235,8 @@ music2vec/
 │   ├── 07_per_category.py             # per-taxonomy soft-hull figures
 │   ├── 09_clustering.py               # k-NN purity / k-means / LOF
 │   ├── 10_extras.py                   # prototypical / distant / dendrogram
-│   └── 11_cross_inst_fugue.py         # cross-instrumentation fugue probe (V4 #2)
+│   ├── 11_cross_inst_fugue.py         # cross-instrumentation fugue probe (V4 #2)
+│   └── 12_render_thumbs.py            # one-system score thumbnails via LilyPond (V4 #3)
 └── out/                               # rendered figures + JSON metrics
 ```
 
@@ -256,6 +259,7 @@ python3 scripts/01b_label.py
 python3 scripts/02_render.py                          # ~5 min on 4 cores
 PYTHONPATH=. python3 scripts/03_embed_audio.py        # ~30 min on CPU (no GPU)
 PYTHONPATH=. python3 scripts/04_project.py
+python3 scripts/12_render_thumbs.py --workers 6           # ~45 min, 138/179 succeed
 PYTHONPATH=. python3 scripts/05_render.py
 PYTHONPATH=. python3 scripts/06_per_projection.py
 PYTHONPATH=. python3 scripts/07_per_category.py
@@ -316,7 +320,7 @@ Modal cost so far: **~$0.65** across three encoder×corpus passes (V1.5 + V2 + V
 
 1. **Symbolic comparison via MusicBERT.** Add `microsoft/musicbert` on raw MIDI tokens — the audio-vs-symbolic side-by-side is the strongest single artifact this project can produce. Especially interesting now: does symbolic *also* recover the Chopin cluster, or is it specific to audio's dynamics/voicing channel?
 2. ~~**Cross-composer fugue probe.**~~ *Closed in V3.5 — see [`out/analysis/cross_inst_fugue.png`](out/analysis/cross_inst_fugue.png) and the [section above](#cross-instrumentation-fugue-probe-v4-2-closed). 2.9–6.3× cross-instrument fugue NN purity lift over chance; MuQ strongest at 6.3×. Now widening to non-Bach violin/cello/quartet fugues.*
-3. **Score thumbnails.** Render each work's first system as a small PNG and use it as the figure mark, the way flag2vec uses the flag itself. Currently the marks are circles.
+3. ~~**Score thumbnails.**~~ *Closed in V3.5 — see `scripts/12_render_thumbs.py`. 138 of 179 works render via LilyPond (the remaining 41 are older Mutopia uploads that fail under 2.24; `convert-ly` rerun is V5). Thumbnails cropped to opening 1–2 measures at aspect ≤ 1.2:1, used in `05_render.py` / `06_per_projection.py` / `07_per_category.py` via `load_thumb()` in `music2vec/style.py`.*
 4. **Rebalance the corpus.** Cap Bach at ~80 works; expand non-Bach to ~500 works. Add Schubert, Debussy, Pärt, Palestrina, Scarlatti, Couperin, Mendelssohn, Bartók.
 5. **Better hulls.** Era as a background gradient under the categorical hulls (currently just text in this README).
 

@@ -37,16 +37,23 @@ def main() -> int:
                     help="Embedding name")
     ap.add_argument("--taxonomy", default=None,
                     help="Limit to a single taxonomy")
+    ap.add_argument("--no-thumbs", action="store_true",
+                    help="force circle markers even if thumbnails exist")
+    ap.add_argument("--hero-thumb-px", type=int, default=30,
+                    help="thumb height in PCA hero panel")
+    ap.add_argument("--small-thumb-px", type=int, default=18,
+                    help="thumb height in t-SNE/UMAP/PHATE panels")
     args = ap.parse_args()
 
     import matplotlib.pyplot as plt
     import numpy as np
     import pandas as pd
+    from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 
     from music2vec.style import (
         BG, TEXT, SUBTLE, FADE, clean_axes, set_axis_limits,
         configure_typography, soft_hull, category_compactness,
-        TAXONOMY_COLORS,
+        TAXONOMY_COLORS, load_thumb,
     )
     from music2vec.taxonomies import TAXONOMIES, NICE_NAME
 
@@ -54,6 +61,16 @@ def main() -> int:
     meta = json.loads((PROJ_DIR / f"{args.name}.meta.json").read_text())
     ev = meta.get("pca_explained_variance_ratio", [0.0, 0.0])
     configure_typography()
+
+    THUMB_DIR = ROOT / "data" / "thumbs"
+    n_thumbs = sum(
+        1 for w in proj["work_id"]
+        if (THUMB_DIR / f"{w}.png").exists()
+    )
+    use_thumbs = (not args.no_thumbs) and n_thumbs >= len(proj) // 3
+    if use_thumbs:
+        print(f"[07_per_category] using thumbs for highlighted works "
+              f"({n_thumbs}/{len(proj)} available)")
 
     panels = [
         ("PCA",   "pca_x",   "pca_y",
@@ -104,8 +121,26 @@ def main() -> int:
                     if len(in_pts) >= 2 else 0.0)
             ax.scatter(xs[~mask], ys[~mask], s=10, color=FADE,
                        alpha=0.6, edgecolor="none")
-            ax.scatter(xs[mask], ys[mask], s=22, color=color,
-                       alpha=0.95, edgecolor="white", linewidth=0.5)
+            if use_thumbs:
+                # Highlighted works become thumbnails; underlay a small
+                # accent-colored dot so the cluster center stays legible.
+                ax.scatter(xs[mask], ys[mask], s=10, color=color,
+                           alpha=0.55, edgecolor="none", zorder=2)
+                for wid, x, y in zip(
+                    proj.loc[mask, "work_id"].values,
+                    xs[mask], ys[mask],
+                ):
+                    thumb = load_thumb(wid, args.hero_thumb_px,
+                                       border_color=color, border_px=2)
+                    if thumb.shape[0] <= 1:
+                        continue
+                    ax.add_artist(AnnotationBbox(
+                        OffsetImage(thumb, zoom=1.0, interpolation="lanczos"),
+                        (x, y), frameon=False, pad=0.0, zorder=3,
+                    ))
+            else:
+                ax.scatter(xs[mask], ys[mask], s=22, color=color,
+                           alpha=0.95, edgecolor="white", linewidth=0.5)
             if comp and comp < 0.65:
                 soft_hull(ax, in_pts, color)
             ax.set_title(
@@ -134,9 +169,28 @@ def main() -> int:
                       if len(ip) >= 2 else 0.0)
                 axb.scatter(pxs_v[~mask[valid]], pys_v[~mask[valid]],
                             s=6, color=FADE, alpha=0.6, edgecolor="none")
-                axb.scatter(pxs_v[mask[valid]], pys_v[mask[valid]],
-                            s=14, color=color, alpha=0.95,
-                            edgecolor="white", linewidth=0.4)
+                if use_thumbs:
+                    axb.scatter(pxs_v[mask[valid]], pys_v[mask[valid]],
+                                s=6, color=color, alpha=0.5,
+                                edgecolor="none", zorder=2)
+                    sub_wids = proj.loc[mask & valid, "work_id"].values
+                    for wid, x, y in zip(
+                        sub_wids,
+                        pxs_v[mask[valid]], pys_v[mask[valid]],
+                    ):
+                        thumb = load_thumb(wid, args.small_thumb_px,
+                                           border_color=color, border_px=1)
+                        if thumb.shape[0] <= 1:
+                            continue
+                        axb.add_artist(AnnotationBbox(
+                            OffsetImage(thumb, zoom=1.0,
+                                        interpolation="lanczos"),
+                            (x, y), frameon=False, pad=0.0, zorder=3,
+                        ))
+                else:
+                    axb.scatter(pxs_v[mask[valid]], pys_v[mask[valid]],
+                                s=14, color=color, alpha=0.95,
+                                edgecolor="white", linewidth=0.4)
                 if cp and cp < 0.65:
                     soft_hull(axb, ip, color)
                 axb.set_title(
