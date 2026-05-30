@@ -17,7 +17,7 @@ This project asks the parallel question of music.
 
 The Bach-only baseline numbers from V1 are preserved for reference further down. The V3 findings layer on top, not replace them.
 
-V3.5 update: every figure mark in the per-category and per-projection plots is now the **first measure or two of the work's score**, rendered via LilyPond from the original Mutopia source. flag2vec uses the flag as the marker; music2vec now uses the score. 138 of 179 works have rendered thumbnails; the remaining 41 (mostly older Mutopia uploads that fail to compile under LilyPond 2.24) fall back to dots.
+V3.6 (2026-05-30): figure marks are colored dots keyed to the *composer* metric, not score thumbnails. An earlier V3.5 pass put a first-measure score image at each scatter point — they made dense regions illegible without adding signal beyond "this is a piece of music," so they were reverted. The hero and per-category figures stay multi-panel (PCA / t-SNE / UMAP / PHATE) where the *point* is to compare cluster shape across projections; the per-projection figures are now single-panel for legibility.
 
 ## Five findings to read first
 
@@ -320,7 +320,7 @@ Modal cost so far: **~$0.65** across three encoder×corpus passes (V1.5 + V2 + V
 
 1. **Symbolic comparison via MusicBERT.** Add `microsoft/musicbert` on raw MIDI tokens — the audio-vs-symbolic side-by-side is the strongest single artifact this project can produce. Especially interesting now: does symbolic *also* recover the Chopin cluster, or is it specific to audio's dynamics/voicing channel?
 2. ~~**Cross-composer fugue probe.**~~ *Closed in V3.5 — see [`out/analysis/cross_inst_fugue.png`](out/analysis/cross_inst_fugue.png) and the [section above](#cross-instrumentation-fugue-probe-v4-2-closed). 2.9–6.3× cross-instrument fugue NN purity lift over chance; MuQ strongest at 6.3×. Now widening to non-Bach violin/cello/quartet fugues.*
-3. ~~**Score thumbnails.**~~ *Closed in V3.5 — see `scripts/12_render_thumbs.py`. 138 of 179 works render via LilyPond (the remaining 41 are older Mutopia uploads that fail under 2.24; `convert-ly` rerun is V5). Thumbnails cropped to opening 1–2 measures at aspect ≤ 1.2:1, used in `05_render.py` / `06_per_projection.py` / `07_per_category.py` via `load_thumb()` in `music2vec/style.py`.*
+3. ~~**Score thumbnails.**~~ *Attempted V3.5, reverted V3.6 — see `scripts/12_render_thumbs.py` (the renderer still works and produces `data/thumbs/<work_id>.png` for 139/179 works). The renders are clean individually but illegible at scatter-plot density: dozens of monochrome staff-line fragments overlap into a uniform texture that hides the cluster structure. Music is the wrong domain for "image as figure mark" — flag2vec works because flag colors are categorical at a glance; first-measures of Bach harpsichord music look identical to first-measures of Bach harpsichord music. The rendered PNGs are kept on disk in case a future interactive view (e.g. hover-preview in the GitHub Pages atlas) wants them.*
 4. **Rebalance the corpus.** Cap Bach at ~80 works; expand non-Bach to ~500 works. Add Schubert, Debussy, Pärt, Palestrina, Scarlatti, Couperin, Mendelssohn, Bartók.
 5. **Better hulls.** Era as a background gradient under the categorical hulls (currently just text in this README).
 

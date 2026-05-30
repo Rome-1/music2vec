@@ -1,10 +1,15 @@
 """07_per_category.py — per-taxonomy highlight figures with soft hulls.
 
-For each taxonomy, generate one figure per label that shows the labeled
-works highlighted across all four projections (PCA hero up top + t-SNE,
-UMAP, PHATE row below), the rest faded to grayscale. Mirrors flag2vec's
-07_per_category script. Compactness numbers per panel make it visible
-which categories cluster in which projections.
+For each (taxonomy, label), one figure showing how that subset clusters
+across PCA / t-SNE / UMAP / PHATE. Multi-panel by design because the
+*point* of this figure is to compare cluster shape under different
+projections — one of the few "shape-comparison" figures Rome's
+feedback called out as legitimately multi-panel.
+
+V3.6 (2026-05-30): score-thumbnail marks removed per Rome's feedback.
+Highlighted works are colored dots in the per-label palette; the rest
+are small gray dots; soft hull drawn when compactness < 0.65 ×
+global mean pairwise distance (the flag2vec honesty constraint).
 
 Outputs: out/categories/<taxonomy>/<label>.png
 """
@@ -37,23 +42,16 @@ def main() -> int:
                     help="Embedding name")
     ap.add_argument("--taxonomy", default=None,
                     help="Limit to a single taxonomy")
-    ap.add_argument("--no-thumbs", action="store_true",
-                    help="force circle markers even if thumbnails exist")
-    ap.add_argument("--hero-thumb-px", type=int, default=30,
-                    help="thumb height in PCA hero panel")
-    ap.add_argument("--small-thumb-px", type=int, default=18,
-                    help="thumb height in t-SNE/UMAP/PHATE panels")
     args = ap.parse_args()
 
     import matplotlib.pyplot as plt
     import numpy as np
     import pandas as pd
-    from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 
     from music2vec.style import (
-        BG, TEXT, SUBTLE, FADE, clean_axes, set_axis_limits,
+        BG, TEXT, FADE, clean_axes, set_axis_limits,
         configure_typography, soft_hull, category_compactness,
-        TAXONOMY_COLORS, load_thumb,
+        TAXONOMY_COLORS,
     )
     from music2vec.taxonomies import TAXONOMIES, NICE_NAME
 
@@ -61,16 +59,6 @@ def main() -> int:
     meta = json.loads((PROJ_DIR / f"{args.name}.meta.json").read_text())
     ev = meta.get("pca_explained_variance_ratio", [0.0, 0.0])
     configure_typography()
-
-    THUMB_DIR = ROOT / "data" / "thumbs"
-    n_thumbs = sum(
-        1 for w in proj["work_id"]
-        if (THUMB_DIR / f"{w}.png").exists()
-    )
-    use_thumbs = (not args.no_thumbs) and n_thumbs >= len(proj) // 3
-    if use_thumbs:
-        print(f"[07_per_category] using thumbs for highlighted works "
-              f"({n_thumbs}/{len(proj)} available)")
 
     panels = [
         ("PCA",   "pca_x",   "pca_y",
@@ -103,106 +91,58 @@ def main() -> int:
             color = per_label_color.get(label, accent)
             mask = proj["work_id"].isin(set(wids))
 
-            fig = plt.figure(figsize=(14, 14), facecolor=BG)
-            gs = fig.add_gridspec(2, 3, height_ratios=[2, 1],
-                                  hspace=0.14, wspace=0.06)
+            # 2×2 grid of equal-size panels; cleaner than the old 2-row
+            # asymmetric layout once thumbnails are gone.
+            fig, axes = plt.subplots(2, 2, figsize=(13, 12),
+                                     facecolor=BG)
+            fig.subplots_adjust(left=0.05, right=0.97, top=0.92,
+                                bottom=0.05, hspace=0.18, wspace=0.10)
 
-            # Hero PCA on top
-            for col_span, (key, idx) in enumerate(zip(panels, range(4))):
-                pass
-            # Top: PCA spans 3 cols
-            ax = fig.add_subplot(gs[0, :])
-            xc, yc = panels[0][1], panels[0][2]
-            xs, ys = proj[xc].values, proj[yc].values
-            in_pts = np.stack([proj.loc[mask, xc].values,
-                               proj.loc[mask, yc].values], axis=1)
-            all_pts = np.stack([xs, ys], axis=1)
-            comp = (category_compactness(in_pts, all_pts)
-                    if len(in_pts) >= 2 else 0.0)
-            ax.scatter(xs[~mask], ys[~mask], s=10, color=FADE,
-                       alpha=0.6, edgecolor="none")
-            if use_thumbs:
-                # Highlighted works become thumbnails; underlay a small
-                # accent-colored dot so the cluster center stays legible.
-                ax.scatter(xs[mask], ys[mask], s=10, color=color,
-                           alpha=0.55, edgecolor="none", zorder=2)
-                for wid, x, y in zip(
-                    proj.loc[mask, "work_id"].values,
-                    xs[mask], ys[mask],
-                ):
-                    thumb = load_thumb(wid, args.hero_thumb_px,
-                                       border_color=color, border_px=2)
-                    if thumb.shape[0] <= 1:
-                        continue
-                    ax.add_artist(AnnotationBbox(
-                        OffsetImage(thumb, zoom=1.0, interpolation="lanczos"),
-                        (x, y), frameon=False, pad=0.0, zorder=3,
-                    ))
-            else:
-                ax.scatter(xs[mask], ys[mask], s=22, color=color,
-                           alpha=0.95, edgecolor="white", linewidth=0.5)
-            if comp and comp < 0.65:
-                soft_hull(ax, in_pts, color)
-            ax.set_title(
-                f"{NICE_NAME.get(tax, tax)} — {label}  "
-                f"·  PCA  ·  compactness {comp:.2f}"
-                f"  ·  n={len(wids)}",
-                color=TEXT, fontsize=12, loc="left",
-            )
-            clean_axes(ax)
-            set_axis_limits(ax, xs, ys)
-
-            # Bottom row: t-SNE / UMAP / PHATE
-            for col, (plabel, pxc, pyc, psub) in enumerate(panels[1:]):
-                if proj[pxc].isna().all():
+            for ax, (plabel, xc, yc, sub) in zip(axes.flat, panels):
+                if proj[xc].isna().all():
+                    ax.text(0.5, 0.5, f"{plabel} unavailable",
+                            transform=ax.transAxes, ha="center",
+                            va="center", color=FADE, fontsize=10)
+                    clean_axes(ax)
                     continue
-                axb = fig.add_subplot(gs[1, col])
-                pxs = proj[pxc].values
-                pys = proj[pyc].values
-                # Drop nans for axis limits
-                valid = ~np.isnan(pxs)
-                pxs_v, pys_v = pxs[valid], pys[valid]
-                ip = np.stack([proj.loc[mask & valid, pxc].values,
-                               proj.loc[mask & valid, pyc].values], axis=1)
-                ap_ = np.stack([pxs_v, pys_v], axis=1)
-                cp = (category_compactness(ip, ap_)
-                      if len(ip) >= 2 else 0.0)
-                axb.scatter(pxs_v[~mask[valid]], pys_v[~mask[valid]],
-                            s=6, color=FADE, alpha=0.6, edgecolor="none")
-                if use_thumbs:
-                    axb.scatter(pxs_v[mask[valid]], pys_v[mask[valid]],
-                                s=6, color=color, alpha=0.5,
-                                edgecolor="none", zorder=2)
-                    sub_wids = proj.loc[mask & valid, "work_id"].values
-                    for wid, x, y in zip(
-                        sub_wids,
-                        pxs_v[mask[valid]], pys_v[mask[valid]],
-                    ):
-                        thumb = load_thumb(wid, args.small_thumb_px,
-                                           border_color=color, border_px=1)
-                        if thumb.shape[0] <= 1:
-                            continue
-                        axb.add_artist(AnnotationBbox(
-                            OffsetImage(thumb, zoom=1.0,
-                                        interpolation="lanczos"),
-                            (x, y), frameon=False, pad=0.0, zorder=3,
-                        ))
-                else:
-                    axb.scatter(pxs_v[mask[valid]], pys_v[mask[valid]],
-                                s=14, color=color, alpha=0.95,
-                                edgecolor="white", linewidth=0.4)
-                if cp and cp < 0.65:
-                    soft_hull(axb, ip, color)
-                axb.set_title(
-                    f"{plabel} — compactness {cp:.2f}",
-                    color=TEXT, fontsize=10, loc="left",
+                valid = ~proj[xc].isna()
+                pxs = proj.loc[valid, xc].values
+                pys = proj.loc[valid, yc].values
+                m_v = mask & valid
+                in_pts = np.stack([proj.loc[m_v, xc].values,
+                                   proj.loc[m_v, yc].values], axis=1)
+                all_pts = np.stack([pxs, pys], axis=1)
+                cp = (category_compactness(in_pts, all_pts)
+                      if len(in_pts) >= 2 else 0.0)
+
+                # Background dots — gray, faded, no edge
+                bg_mask = valid & (~mask)
+                ax.scatter(proj.loc[bg_mask, xc],
+                           proj.loc[bg_mask, yc],
+                           s=12, color=FADE, alpha=0.55,
+                           edgecolor="none", zorder=1)
+                # Foreground dots — category color, larger, with edge
+                ax.scatter(proj.loc[m_v, xc],
+                           proj.loc[m_v, yc],
+                           s=58, color=color, alpha=0.92,
+                           edgecolor=BG, linewidth=0.9, zorder=3)
+                if cp and cp < 0.65 and len(in_pts) >= 3:
+                    soft_hull(ax, in_pts, color)
+
+                ax.set_title(
+                    f"{plabel}  ·  {sub}  ·  compactness {cp:.2f}",
+                    color=TEXT, fontsize=11, loc="left", pad=6,
                 )
-                clean_axes(axb)
-                set_axis_limits(axb, pxs_v, pys_v)
+                clean_axes(ax)
+                set_axis_limits(ax, pxs, pys)
+
+            fig.suptitle(
+                f"{NICE_NAME.get(tax, tax)} — {label}  ·  n={len(wids)}",
+                color=TEXT, fontsize=14, x=0.05, y=0.97, ha="left",
+            )
 
             out_path = out_tax_dir / f"{label}.png"
-            fig.savefig(out_path, dpi=180, bbox_inches="tight",
-                        facecolor=BG)
+            fig.savefig(out_path, dpi=180, facecolor=BG)
             plt.close(fig)
             print(f"  wrote {out_path}")
 

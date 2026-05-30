@@ -132,6 +132,30 @@ NATIONAL_SCHOOL = {
 }
 
 
+# Composer palette — used by single-projection figures and the hero
+# cross-projection comparison to color works by their author. Distinct
+# print-safe hues, no two adjacent on a colorblind ramp.
+COMPOSER_COLORS = {
+    "BachJS":     "#1F3F6E",   # deep cobalt — anchor of the corpus
+    "BeethovenLv":"#A04C2C",   # terracotta — bridges baroque + romantic
+    "ChopinFF":   "#A02C58",   # rose — Polish-Romantic island
+    "DvorakA":    "#3E8C73",   # forest — Czech nationalist
+    "MozartWA":   "#C0892F",   # ochre — Viennese classical
+    "VivaldiA":   "#6E5C9C",   # plum — Italian baroque concerto
+    "HandelGF":   "#7E5A1F",   # umber — German-baroque-via-London
+}
+
+COMPOSER_NICE_NAME = {
+    "BachJS":      "Bach",
+    "BeethovenLv": "Beethoven",
+    "ChopinFF":    "Chopin",
+    "DvorakA":     "Dvořák",
+    "MozartWA":    "Mozart",
+    "VivaldiA":    "Vivaldi",
+    "HandelGF":    "Handel",
+}
+
+
 # Registry of all taxonomies. Used by the figure pipeline to iterate.
 TAXONOMIES = {
     "compositional_device": COMPOSITIONAL_DEVICE,
